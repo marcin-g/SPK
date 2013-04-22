@@ -55,7 +55,7 @@ public class User {
 		this.email = email;
 	}
 
-	private long getId() {
+	public long getId() {
 		return id;
 	}
 
