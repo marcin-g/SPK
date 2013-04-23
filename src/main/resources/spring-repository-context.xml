@@ -2,9 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<bean id="movieRepository" class="pl.miasi2013.spring.lab2.dao.FixedMovieRepository"/>
-	<bean id="bookRepository" class="pl.miasi2013.spring.lab2.dao.BookRepository"/>
-	<bean id="orderRepository" class="pl.miasi2013.spring.lab2.dao.OrderRepository"/>
+
+	<bean id="bookRepository" class="pl.miasi2013.spring.lab2.dao.BookRepository">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="orderRepository" class="pl.miasi2013.spring.lab2.dao.OrderRepository">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 
 </beans>
