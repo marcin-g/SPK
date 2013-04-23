@@ -11,7 +11,7 @@ public class Book {
 	private BookState state;
 
 	public enum BookState {
-
+		
 	}
 
 	public Book() {

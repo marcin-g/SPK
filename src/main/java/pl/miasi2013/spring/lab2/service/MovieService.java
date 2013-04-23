@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import pl.miasi2013.spring.lab2.dao.MovieRepository;
 import pl.miasi2013.spring.lab2.model.Movie;
+import pl.miasi2013.spring.lab2.service.exceptions.MovieNotFoundException;
 
 @Service
 public class MovieService {
