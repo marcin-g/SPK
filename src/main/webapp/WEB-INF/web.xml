@@ -12,7 +12,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		- Applied by ContextLoaderServlet. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-service-context.xml, classpath:spring-repository-context.xml</param-value>
+		<param-value>classpath:spring-service-context.xml, classpath:spring-repository-context.xml, classpath:spring-context.xml</param-value>
 	</context-param>
 
 	<listener>
