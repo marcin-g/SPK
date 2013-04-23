@@ -22,7 +22,7 @@ public class OrderController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllOrders(Model model) {
-		model.addAttribute("books", orderService.getAllOrders());
+		model.addAttribute("orders", orderService.getAllOrders());
 		return "ordersList";
 	}
 	
