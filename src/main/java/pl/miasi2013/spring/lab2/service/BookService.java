@@ -31,22 +31,15 @@ public class BookService {
 	}
 
 	public void updateBook(Book book) {
-		Book bookToUpdate = bookRepository.getBookById(book.getId());
-		if (book == null) {
-			throw new BookNotFoundException(book.getId());
-		}
-		bookToUpdate.setBookURL(book.getBookURL());
-		bookToUpdate.setISBN(book.getISBN());
-		bookToUpdate.setPublisher(book.getPublisher());
-		bookToUpdate.setReviewURL(book.getReviewURL());
-		bookToUpdate.setState(book.getState());
-		bookToUpdate.setTitle(book.getTitle());
-		bookToUpdate.setYear(book.getYear());
+		bookRepository.updateBook(book);
 	}
 
 	public void deleteBookById(long bookId) {
 		Book book=this.getBookById(bookId);
-		if(book!=null){
+		if(book==null){
+			throw new BookNotFoundException(bookId);
+		}
+		else{
 			bookRepository.deleteBook(book);
 		}
 		

@@ -1,5 +1,7 @@
 package pl.miasi2013.spring.lab2.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +31,17 @@ public class OrderService {
 	}
 
 	public void deleteOrderById(long orderId) {
-		orderRepository.deleteOrder(orderId);
+		Order order=orderRepository.getOrderById(orderId);
+		if(order==null){
+			throw new OrderNotFoundException(orderId);
+		}
+		else{
+			orderRepository.deleteOrder(order);
+		}
 		
 	}
 
-	public Object getAllOrders() {
+	public Collection<Order> getAllOrders() {
 		return orderRepository.getAllOrders();
 	}
 	
