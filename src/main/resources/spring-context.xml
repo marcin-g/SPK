@@ -26,9 +26,9 @@
 
 
 
-	<jdbc:initialize-database data-source="dataSource"
+	<!--  jdbc:initialize-database data-source="dataSource"
 		ignore-failures="ALL">
 		<jdbc:script location="DDL.sql" />
-	</jdbc:initialize-database>
+	</jdbc:initialize-database-->
 
 </beans>
