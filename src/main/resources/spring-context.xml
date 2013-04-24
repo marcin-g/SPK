@@ -26,9 +26,10 @@
 
 
 
-	<!--  jdbc:initialize-database data-source="dataSource"
+	<jdbc:initialize-database data-source="dataSource"
 		ignore-failures="ALL">
-		<jdbc:script location="DDL.sql" />
-	</jdbc:initialize-database-->
+		<jdbc:script location="classpath:DDL.sql"/>
+		<jdbc:script location="classpath:DML.sql"/>
+	</jdbc:initialize-database>
 
 </beans>
