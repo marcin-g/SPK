@@ -46,8 +46,8 @@ public class OrderController {
 				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
-		orderService.insertOrder(order);
 		bookService.insertBook(book);
+		orderService.insertOrder(order);
 		return "redirect:/order";
 	}
 
