@@ -54,7 +54,9 @@ public class OrderController {
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
 	public String initEditOrder(@PathVariable("orderId") long orderId,
 			Model model) {
-		model.addAttribute("order", orderService.getOrderById(orderId));
+		Order order=orderService.getOrderById(orderId);
+		model.addAttribute("order", order);
+		model.addAttribute("book", bookService.getBookById(order.getBookId()));
 		return "createOrUpdateOrderForm";
 	}
 
