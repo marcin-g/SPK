@@ -42,12 +42,13 @@ public class OrderController {
 		order.setTime(System.currentTimeMillis());
 		order.setBookURL(book.getBookURL());
 		order.setBookId(book.getId());
+		order.setUserId(0); //TODO do wyrzucenia
 		if (!isOrderValid(order, result)
 				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
-		orderService.insertOrder(order);
 		bookService.insertBook(book);
+		orderService.insertOrder(order);
 		return "redirect:/orders";
 	}
 
@@ -70,8 +71,8 @@ public class OrderController {
 				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
-		orderService.updateOrder(order);
 		bookService.updateBook(book);
+		orderService.updateOrder(order);
 		return "redirect:/orders";
 	}
 
