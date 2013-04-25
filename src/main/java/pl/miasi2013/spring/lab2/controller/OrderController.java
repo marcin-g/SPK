@@ -41,13 +41,13 @@ public class OrderController {
 
 		order.setTime(System.currentTimeMillis());
 		order.setBookURL(book.getBookURL());
-		order.setBookId(book.getId());
 		order.setUserId(0); //TODO do wyrzucenia
 		if (!isOrderValid(order, result)
 				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
 		bookService.insertBook(book);
+		order.setBookId(book.getId());
 		orderService.insertOrder(order);
 		return "redirect:/order";
 	}
