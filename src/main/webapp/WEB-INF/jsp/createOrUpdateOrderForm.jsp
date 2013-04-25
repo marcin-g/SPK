@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="mytags" tagdir="/WEB-INF/tags"%>
+<%@ page contentType="text/html;charset=utf-8" %>
 
 
 <html lang="pl">
@@ -21,18 +22,38 @@
 			</c:otherwise>
 		</c:choose>
 
-		<form:form modelAttribute="order" method="${method}"
+		<form:form modelAttribute="book" method="${method}"
 			class="form-horizontal">
 				<div class="${cssGroup}">
-					<label class="control-label">Title</label>
+					<label class="control-label">Tytuł</label>
 					<div class="controls">
 						<form:hidden path="id"/>
 						<form:input path="title" />
 						<span class="help-inline"><form:errors path="title" cssClass="control-group error"/></span>
 					</div>
+					<label class="control-label">Autor</label>
+					<div class="controls">
+						<form:input path="title" />
+						<span class="help-inline"><form:errors path="title" cssClass="control-group error"/></span>
+					</div>					
+					<label class="control-label">ISBN</label>
+					<div class="controls">
+						<form:input path="ISBN" />
+						<span class="help-inline"><form:errors path="ISBN" cssClass="control-group error"/></span>
+					</div>
+					<label class="control-label">Wydawnictwo</label>
+					<div class="controls">
+						<form:input path="publisher" />
+						<span class="help-inline"><form:errors path="ISBN" cssClass="control-group error"/></span>
+					</div>
+					<label class="control-label">Rok wydania</label>
+					<div class="controls">
+						<form:input path="year" />
+						<span class="help-inline"><form:errors path="year" cssClass="control-group error"/></span>
+					</div>
 				</div>
 				<div class="form-actions">
-					<button type="submit">Zamów</button>
+					<button type="submit">Zamów książkę	</button>
 				</div>
 		</form:form>
 		<jsp:include page="fragments/footer.jsp" />

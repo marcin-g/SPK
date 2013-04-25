@@ -6,11 +6,11 @@
     <div class="navbar-inner">
         <ul class="nav">
             <li style="width: 100px;"><a href="<spring:url value="/" htmlEscape="true" />"><i class="icon-home"></i>
-                Home</a></li>
+                Książki</a></li>
             <li style="width: 130px;"><a href="<spring:url value="/movies.html" htmlEscape="true" />"><i
                     class="icon-th-list"></i> Zamówienia</a></li>
-            <li style="width: 130px;"><a href="<spring:url value="/movies/new.html" htmlEscape="true" />"><i
-                    class="icon-plus-sign"></i> Add movie</a></li>                        
+            <li style="width: 170px;"><a href="<spring:url value="/movies/new.html" htmlEscape="true" />"><i
+                    class="icon-plus-sign"></i> Zamów książkę</a></li>                        
         </ul>
     </div>
 </div>
