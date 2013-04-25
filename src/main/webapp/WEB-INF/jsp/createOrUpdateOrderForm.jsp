@@ -33,8 +33,8 @@
 					</div>
 					<label class="control-label">Autor</label>
 					<div class="controls">
-						<form:input path="title" />
-						<span class="help-inline"><form:errors path="title" cssClass="control-group error"/></span>
+						<form:input path="author" />
+						<span class="help-inline"><form:errors path="author" cssClass="control-group error"/></span>
 					</div>					
 					<label class="control-label">ISBN</label>
 					<div class="controls">
