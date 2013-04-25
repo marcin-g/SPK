@@ -18,8 +18,8 @@ public class BookService {
 		return bookRepository.getAllBooks();
 	}
 
-	public void insertBook(Book book) {
-		bookRepository.insertBook(book);
+	public long insertBook(Book book) {
+		return bookRepository.insertBook(book);
 	}
 
 	public Book getBookById(long bookId) {

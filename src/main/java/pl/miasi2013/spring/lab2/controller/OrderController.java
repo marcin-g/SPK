@@ -49,8 +49,8 @@ public class OrderController {
 			return "createOrUpdateOrderForm";
 		}
 		
-		bookService.insertBook(book);
-		order.setBookId(book.getId());
+		long bookId = bookService.insertBook(book);
+		order.setBookId(bookId);
 		orderService.insertOrder(order);
 		return "redirect:/order";
 	}
