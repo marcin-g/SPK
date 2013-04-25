@@ -25,7 +25,7 @@ public class OrderController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllOrders(Model model) {
-		model.addAttribute("orders", orderService.getAllOrdersWithBooks());
+		model.addAttribute("orders", orderService.getOrdersWithBooks(orderService.getReportedOrders()));
 		return "ordersList";
 	}
 

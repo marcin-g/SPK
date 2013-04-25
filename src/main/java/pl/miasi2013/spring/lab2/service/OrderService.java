@@ -49,11 +49,18 @@ public class OrderService {
 		return orderRepository.getAllOrders();
 	}
 	
-	public Map<Order,Book> getAllOrdersWithBooks() {
+	public Collection<Order> getReportedOrders() {
+		return orderRepository.getAllReportedOrders();
+	}
+	
+	public Map<Order,Book> getOrdersWithBooks(Collection<Order> orders) {
 		HashMap<Order,Book> map=new HashMap<Order,Book>();
-		for(Order order:this.getAllOrders()){
+		for(Order order:orders){
 			map.put(order, bookService.getBookById(order.getBookId()));
 		}
 		return map;
 	}
+	
+	
+	
 }

@@ -44,5 +44,9 @@ public class BookService {
 		}
 		
 	}
+	
+	public Collection<Book> getAllVisibleBooks() {
+		return bookRepository.getAllVisibleBooks();
+	}
 
 }
