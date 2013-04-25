@@ -1,8 +1,8 @@
 package pl.miasi2013.spring.lab2.service;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,7 @@ public class OrderService {
 	}
 	
 	public Map<Order,Book> getAllOrdersWithBooks() {
-		TreeMap<Order,Book> map=new TreeMap<Order,Book>();
+		HashMap<Order,Book> map=new HashMap<Order,Book>();
 		for(Order order:this.getAllOrders()){
 			map.put(order, bookService.getBookById(order.getBookId()));
 		}
