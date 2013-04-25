@@ -3,6 +3,7 @@ package pl.miasi2013.spring.lab2.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -37,7 +38,10 @@ public class BookRepository implements BookRepositoryInterface {
 
 	@Override
 	public void insertBook(Book book) {
-		throw new NotImplementedException();
+//		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+//		for (String title: movieTitles) {
+//			jdbcTemplate.update("insert into Movie (title) values (?)", title);
+//		}
 	}
 
 	@Override
@@ -48,7 +52,13 @@ public class BookRepository implements BookRepositoryInterface {
 
 	@Override
 	public Book getBookById(long bookId) {
-		throw new NotImplementedException();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {bookId};
+		List<Book> books = jdbcTemplate.query("select * from Book where id = (?)", parameters, new BookMapper());
+		if (books.isEmpty()) {
+			return null;
+		}
+		return books.get(0);
 	}
 
 	@Override
