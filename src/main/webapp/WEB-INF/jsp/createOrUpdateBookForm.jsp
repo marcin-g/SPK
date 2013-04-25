@@ -28,6 +28,7 @@
 					<label class="control-label">Tytuł</label>
 					<div class="controls">
 						<form:hidden path="id"/>
+						<form:hidden path="state"/>
 						<form:input path="title" />
 						<span class="help-inline"><form:errors path="title" cssClass="control-group error"/></span>
 					</div>
