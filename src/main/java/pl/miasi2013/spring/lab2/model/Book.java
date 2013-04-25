@@ -8,6 +8,7 @@ public class Book {
 	private String publisher;
 	private String reviewURL;
 	private String bookURL;
+	private String author;
 	private BookState state;
 
 	public enum BookState {
@@ -18,7 +19,7 @@ public class Book {
 	}
 
 	public Book(long id, String title, String iSBN, int year, String publisher,
-			String reviewURL, String bookURL, BookState state) {
+			String reviewURL, String bookURL, String author, BookState state) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -27,6 +28,7 @@ public class Book {
 		this.publisher = publisher;
 		this.reviewURL = reviewURL;
 		this.bookURL = bookURL;
+		this.author = author;
 		this.state = state;
 	}
 
@@ -93,4 +95,13 @@ public class Book {
 	public void setState(BookState state) {
 		this.state = state;
 	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
 }
