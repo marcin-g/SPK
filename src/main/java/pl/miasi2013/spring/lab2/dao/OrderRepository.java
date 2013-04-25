@@ -18,8 +18,8 @@ import pl.miasi2013.spring.lab2.model.relations.Order;
 class OrderMapper implements RowMapper<Order> {
 	@Override
 	public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new Order(rs.getInt("ID"), rs.getInt("BOOK_ID"), rs.getInt("UER_ID"),
-				rs.getInt("TIME"), rs.getString("BOOK_URL"));
+		return new Order(rs.getInt("ID"), rs.getInt("BOOK_ID"), rs.getInt("USER_ID"),
+				rs.getLong("TIME"), rs.getString("BOOK_URL"));
 	}
 	
 }

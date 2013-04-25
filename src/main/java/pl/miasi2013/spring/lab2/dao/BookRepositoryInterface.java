@@ -5,7 +5,7 @@ import java.util.Collection;
 import pl.miasi2013.spring.lab2.model.Book;
 
 public interface BookRepositoryInterface {
-	public void insertBook(Book book);
+	public int insertBook(Book book);
 
 	public Collection<Book> getAllBooks();
 

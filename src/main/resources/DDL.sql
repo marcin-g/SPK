@@ -49,7 +49,7 @@ CREATE TABLE OrderO (
   id INT NOT NULL primary key IDENTITY,
   book_id INT NOT NULL,
   user_id INT NOT NULL,
-  time INT NULL,
+  time BIGINT NULL,
   book_url VARCHAR(255) NULL
 );
 
