@@ -2,7 +2,6 @@ package pl.miasi2013.spring.lab2.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
@@ -10,26 +9,14 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import pl.miasi2013.spring.lab2.model.Book;
-import pl.miasi2013.spring.lab2.model.Book.BookState;
+import pl.miasi2013.spring.lab2.model.relations.Order;
 
-class BookMapper implements RowMapper<Book> {
-	@Override
-	public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new Book(rs.getInt("ID"), rs.getString("TITLE"), rs.getString("ISBN"),
-				rs.getInt("year"), rs.getString("PUBLISHER"), rs.getString("REVIEW_URL"),
-				rs.getString("BOOK_URL"), rs.getString("author"),
-				BookState.valueOf(rs.getString("STATE"))) ;
-	}
-	
-}
 
 public class BookRepository implements BookRepositoryInterface {
 	
@@ -97,6 +84,12 @@ public class BookRepository implements BookRepositoryInterface {
 	@Override
 	public void deleteBook(Book book) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {book.getId()};
+		List<Order> orders = jdbcTemplate.query("select * from OrderO where book_id = (?)", parameters, new OrderMapper());
+		if (!orders.isEmpty()) {
+			Order order = orders.get(0);
+			jdbcTemplate.update("delete from OrderO where id = ?", order.getId());
+		}
 		jdbcTemplate.update("delete from Book where id = ?", book.getId());
 	}
 
