@@ -49,7 +49,7 @@ public class OrderController {
 		}
 		bookService.insertBook(book);
 		orderService.insertOrder(order);
-		return "redirect:/orders";
+		return "redirect:/order";
 	}
 
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
@@ -73,7 +73,7 @@ public class OrderController {
 		}
 		bookService.updateBook(book);
 		orderService.updateOrder(order);
-		return "redirect:/orders";
+		return "redirect:/order";
 	}
 
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.DELETE)
