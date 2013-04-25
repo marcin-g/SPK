@@ -42,7 +42,8 @@ public class OrderController {
 		order.setTime(System.currentTimeMillis());
 		order.setBookURL(book.getBookURL());
 		order.setBookId(book.getId());
-		if (!isOrderValid(order, result) && !BookController.isBookValid(book, result)) {
+		if (!isOrderValid(order, result)
+				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
 		orderService.insertOrder(order);
@@ -59,11 +60,16 @@ public class OrderController {
 
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.PUT)
 	public String updateOrder(@ModelAttribute("order") Order order,
-			BindingResult result) {
-		if (!isOrderValid(order, result)) {
+			@ModelAttribute("book") Book book, BindingResult result) {
+		order.setTime(System.currentTimeMillis());
+		order.setBookURL(book.getBookURL());
+		order.setBookId(book.getId());
+		if (!isOrderValid(order, result)
+				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
 		orderService.updateOrder(order);
+		bookService.updateBook(book);
 		return "redirect:/orders";
 	}
 
