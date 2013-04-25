@@ -14,7 +14,7 @@
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
 		<c:choose>
-			<c:when test="${empty order.id}">
+			<c:when test="${empty book.id}">
 				<c:set var="method" value="post" />
 			</c:when>
 			<c:otherwise>
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<button type="submit">Zamów książkę	</button>
+					<button type="submit">Edytuj książkę	</button>
 				</div>
 		</form:form>
 		<jsp:include page="fragments/footer.jsp" />
