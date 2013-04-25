@@ -51,7 +51,6 @@ public class OrderController {
 		
 		bookService.insertBook(book);
 		order.setBookId(book.getId());
-//		System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA " + order.getBookId() + " " + order.getUserId() + " " + order.getTime() + " " + order.getBookURL());
 		orderService.insertOrder(order);
 		return "redirect:/order";
 	}
