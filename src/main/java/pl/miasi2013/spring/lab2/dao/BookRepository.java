@@ -96,7 +96,8 @@ public class BookRepository implements BookRepositoryInterface {
 
 	@Override
 	public void deleteBook(Book book) {
-		throw new NotImplementedException();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("delete from Book where id = ?", book.getId());
 	}
 
 	@Override
