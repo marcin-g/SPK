@@ -12,7 +12,7 @@ public class Book {
 	private BookState state;
 
 	public enum BookState {
-		
+		REPORTED, REVIEWED, AVAILABLE
 	}
 
 	public Book() {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.Book;
+import pl.miasi2013.spring.lab2.model.Book.BookState;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.BookService;
 import pl.miasi2013.spring.lab2.service.OrderService;
@@ -42,13 +43,28 @@ public class OrderController {
 		order.setTime(System.currentTimeMillis());
 		order.setBookURL(book.getBookURL());
 		order.setUserId(0); //TODO do wyrzucenia
+		book.setState(BookState.REPORTED);
 		if (!isOrderValid(order, result)
 				&& !BookController.isBookValid(book, result)) {
 			return "createOrUpdateOrderForm";
 		}
+		
 		bookService.insertBook(book);
 		order.setBookId(book.getId());
 		orderService.insertOrder(order);
+		return "redirect:/order";
+	}
+	@RequestMapping(value = "/confirm/{orderId}", method = RequestMethod.POST)
+	public String confirmOrder(@PathVariable("orderId") long orderId,BindingResult result) {
+
+		Order order=orderService.getOrderById(orderId);
+		Book book=bookService.getBookById(order.getBookId());
+		book.setState(BookState.REVIEWED);
+		if (!isOrderValid(order, result)
+				&& !BookController.isBookValid(book, result)) {
+			return "createOrUpdateOrderForm";
+		}
+		bookService.updateBook(book);
 		return "redirect:/order";
 	}
 
