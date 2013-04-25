@@ -56,16 +56,11 @@ public class OrderController {
 		return "redirect:/order";
 	}
 	@RequestMapping(value = "/confirm/{orderId}", method = RequestMethod.POST)
-	public String confirmOrder(@PathVariable("orderId") long orderId,BindingResult result) {
+	public String confirmOrder(@PathVariable("orderId") long orderId) {
 
 		Order order=orderService.getOrderById(orderId);
 		Book book=bookService.getBookById(order.getBookId());
 		book.setState(BookState.REVIEWED);
-		if (!isOrderValid(order, result)
-				&& !BookController.isBookValid(book, result)) {
-			return "createOrUpdateOrderForm";
-		}
-		bookService.updateBook(book);
 		return "redirect:/order";
 	}
 
