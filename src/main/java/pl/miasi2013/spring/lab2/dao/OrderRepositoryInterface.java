@@ -10,4 +10,5 @@ public interface OrderRepositoryInterface {
 	public Order getOrderById(long orderId);
 	public void deleteOrder(Order order);
 	public Collection<Order> getAllOrders();
+	public Collection<Order> getAllReportedOrders();
 }

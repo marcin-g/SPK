@@ -8,6 +8,8 @@ public interface BookRepositoryInterface {
 	public int insertBook(Book book);
 
 	public Collection<Book> getAllBooks();
+	
+	public Collection<Book> getAllVisibleBooks();
 
 	public Book getBookById(long bookId);
 

@@ -60,6 +60,7 @@ public class OrderController {
 		Order order=orderService.getOrderById(orderId);
 		Book book=bookService.getBookById(order.getBookId());
 		book.setState(BookState.REVIEWED);
+		bookService.updateBook(book);
 		return "redirect:/order";
 	}
 

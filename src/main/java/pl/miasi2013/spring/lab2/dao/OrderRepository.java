@@ -74,7 +74,7 @@ public class OrderRepository implements OrderRepositoryInterface {
 	public Order getOrderById(long orderId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] parameters = {orderId};
-		List<Order> orders = jdbcTemplate.query("select * from ORderO where id = (?)", parameters, new OrderMapper());
+		List<Order> orders = jdbcTemplate.query("select * from OrderO where id = (?)", parameters, new OrderMapper());
 		if (orders.isEmpty()) {
 			return null;
 		}
@@ -90,6 +90,12 @@ public class OrderRepository implements OrderRepositoryInterface {
 	public Collection<Order> getAllOrders() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return jdbcTemplate.query("select * from OrderO", new OrderMapper());
+	}
+	
+	@Override
+	public Collection<Order> getAllReportedOrders() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		return jdbcTemplate.query("select * from OrderO o join Book b on b.id = o.book_id where b.state = 'REPORTED'", new OrderMapper());
 	}
 
 }

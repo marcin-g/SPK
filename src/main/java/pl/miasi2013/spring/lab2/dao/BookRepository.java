@@ -76,6 +76,12 @@ public class BookRepository implements BookRepositoryInterface {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return jdbcTemplate.query("select * from Book", new BookMapper());
 	}
+	
+	@Override
+	public Collection<Book> getAllVisibleBooks() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		return jdbcTemplate.query("select * from Book where state != 'REPORTED'", new BookMapper());
+	}
 
 	@Override
 	public Book getBookById(long bookId) {
@@ -95,7 +101,10 @@ public class BookRepository implements BookRepositoryInterface {
 
 	@Override
 	public void updateBook(Book book) {
-		throw new NotImplementedException();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("update Book set title = ?, isbn = ?, year = ?, publisher = ?, review_url = ?, book_url = ?, author = ?, state = ? where id = ?",
+				book.getTitle(), book.getISBN(), book.getYear(), book.getPublisher(),
+				book.getReviewURL(), book.getBookURL(), book.getAuthor(), book.getState()==null ? "" : book.getState().toString(), book.getId());
 	}
 
 }
