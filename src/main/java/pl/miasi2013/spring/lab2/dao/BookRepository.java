@@ -38,10 +38,10 @@ public class BookRepository implements BookRepositoryInterface {
 
 	@Override
 	public void insertBook(Book book) {
-//		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-//		for (String title: movieTitles) {
-//			jdbcTemplate.update("insert into Movie (title) values (?)", title);
-//		}
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("insert into Book (title, isbn, year, publisher, review_url, book_url, author, state) values (?, ?, ?, ?, ?, ?, ?, ?)",
+				book.getTitle(), book.getISBN(), book.getYear(), book.getPublisher(),
+				book.getReviewURL(), book.getBookURL(), book.getAuthor(), book.getState().toString());
 	}
 
 	@Override
