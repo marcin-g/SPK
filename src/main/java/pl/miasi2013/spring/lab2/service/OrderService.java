@@ -1,11 +1,14 @@
 package pl.miasi2013.spring.lab2.service;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.miasi2013.spring.lab2.dao.OrderRepositoryInterface;
+import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.exceptions.OrderNotFoundException;
 
@@ -13,6 +16,8 @@ import pl.miasi2013.spring.lab2.service.exceptions.OrderNotFoundException;
 public class OrderService {
 	@Autowired
 	private OrderRepositoryInterface orderRepository;
+	@Autowired
+	private BookService bookService;
 
 	public void insertOrder(Order order) {
 		orderRepository.insertOrder(order);
@@ -38,11 +43,18 @@ public class OrderService {
 		else{
 			orderRepository.deleteOrder(order);
 		}
-		
 	}
 
 	public Collection<Order> getAllOrders() {
 		return orderRepository.getAllOrders();
+	}
+	
+	public Map<Order,Book> getAllOrdersWithBooks() {
+		TreeMap<Order,Book> map=new TreeMap<Order,Book>();
+		for(Order order:this.getAllOrders()){
+			map.put(order, bookService.getBookById(order.getBookId()));
+		}
+		return map;
 	}
 	
 	
