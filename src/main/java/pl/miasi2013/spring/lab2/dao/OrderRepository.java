@@ -3,6 +3,7 @@ package pl.miasi2013.spring.lab2.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -36,7 +37,9 @@ public class OrderRepository implements OrderRepositoryInterface {
 
 	@Override
 	public void insertOrder(Order order) {
-		throw new NotImplementedException();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("insert into OrderO (book_id, user_id, time, book_url) values (?, ?, ?, ?)",
+				order.getBookId(), order.getUserId(), order.getTime(), order.getBookURL());
 	}
 
 	@Override
@@ -46,7 +49,13 @@ public class OrderRepository implements OrderRepositoryInterface {
 
 	@Override
 	public Order getOrderById(long orderId) {
-		throw new NotImplementedException();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {orderId};
+		List<Order> orders = jdbcTemplate.query("select * from ORderO where id = (?)", parameters, new OrderMapper());
+		if (orders.isEmpty()) {
+			return null;
+		}
+		return orders.get(0);
 	}
 
 	@Override
