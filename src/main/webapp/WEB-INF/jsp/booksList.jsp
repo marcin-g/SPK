@@ -19,17 +19,14 @@
 		<h2>Książki</h2>
 
 		<c:forEach var="book" items="${books}">
-			<c:out value="${book.id}" />
-			<c:out value="${book.title}" />
+			<c:out value="${book.id}" />. <b><c:out value="${book.title}" /></b> - <c:out value="${book.author}" />
 			<spring:url value="/books/{bookId}" var="bookURL">
 				<spring:param name="bookId" value="${book.id}" />
-			</spring:url>
-			<a href="${bookURL}">edytuj</a>
+			</spring:url><br />
+			[<a href="${bookURL}">edytuj</a>]
 			<form:form method="delete" action="${bookURL}">
 				<button type="submit">Usuń</button>
 			</form:form>
-			<br />
-
 		</c:forEach>
 		<jsp:include page="fragments/footer.jsp" />
 	</div>

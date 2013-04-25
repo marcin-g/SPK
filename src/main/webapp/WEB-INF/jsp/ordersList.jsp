@@ -19,15 +19,14 @@
 		<h2>Zamówienia</h2>
 
 		<c:forEach var="order" items="${orders}">
-			Zamówienie: <c:out value="${order.key.id}" /><br />
-			<b><c:out value="${order.value.title}" /></b> - <c:out value="${order.value.author}" /><br />
 			<spring:url value="/order/confirm/{orderId}" var="orderURL">
 				<spring:param name="orderId" value="${order.key.id}" />
 			</spring:url>
 			<form:form method="post" action="${orderURL}">
+			Zamówienie nr <c:out value="${order.key.id}" />.<br />
+			<b><c:out value="${order.value.title}" /></b> - <c:out value="${order.value.author}" /><br />
 				<button type="submit">Zatwierdź</button>
 			</form:form>
-			<br />
 
 		</c:forEach>
 		<jsp:include page="fragments/footer.jsp" />
