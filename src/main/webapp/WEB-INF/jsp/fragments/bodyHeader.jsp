@@ -5,11 +5,11 @@
 <div class="navbar" style="width: 601px;">
     <div class="navbar-inner">
         <ul class="nav">
-            <li style="width: 100px;"><a href="<spring:url value="/" htmlEscape="true" />"><i class="icon-home"></i>
+            <li style="width: 100px;"><a href="<spring:url value="/books.html" htmlEscape="true" />"><i class="icon-home"></i>
                 Książki</a></li>
-            <li style="width: 130px;"><a href="<spring:url value="/movies.html" htmlEscape="true" />"><i
+            <li style="width: 130px;"><a href="<spring:url value="/order.html" htmlEscape="true" />"><i
                     class="icon-th-list"></i> Zamówienia</a></li>
-            <li style="width: 170px;"><a href="<spring:url value="/movies/new.html" htmlEscape="true" />"><i
+            <li style="width: 170px;"><a href="<spring:url value="/order/new.html" htmlEscape="true" />"><i
                     class="icon-plus-sign"></i> Zamów książkę</a></li>                        
         </ul>
     </div>
