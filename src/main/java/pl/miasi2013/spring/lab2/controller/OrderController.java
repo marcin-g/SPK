@@ -39,7 +39,7 @@ public class OrderController {
 			return "createOrUpdateOrderForm";
 		}
 		orderService.insertOrder(order);
-		return "redirect:/orders";
+		return "redirect:/order";
 	}
 	
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
@@ -54,7 +54,7 @@ public class OrderController {
 			return "createOrUpdateOrderForm";
 		}
 		orderService.updateOrder(order);
-		return "redirect:/orders";		
+		return "redirect:/order";		
 	}
 	
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.DELETE)
