@@ -36,6 +36,7 @@ CREATE TABLE Book (
   publisher VARCHAR(255) NULL,
   review_url VARCHAR(255) NULL,
   book_url VARCHAR(255) NULL,
+  author VARCHAR(255) NULL,
   state VARCHAR(255) NULL
 );
 

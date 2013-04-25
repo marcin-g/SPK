@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.OrderService;
 
@@ -27,6 +28,7 @@ public class OrderController {
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String initCreationForm(Model model) {
 		model.addAttribute("order", new Order());
+		model.addAttribute("book", new Book());
 		return "createOrUpdateOrderForm";
 	}
 
