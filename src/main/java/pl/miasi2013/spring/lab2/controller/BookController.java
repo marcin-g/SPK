@@ -62,7 +62,7 @@ public class BookController {
 		return "redirect:/books";		
 	}
 
-	private boolean isBookValid(Book book, BindingResult result) {
+	public static boolean isBookValid(Book book, BindingResult result) {
 		boolean valid=true;
 		if(!StringUtils.hasLength(book.getISBN())){
 			result.rejectValue("ISBN", "required", "required");
