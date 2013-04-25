@@ -1,12 +1,27 @@
 package pl.miasi2013.spring.lab2.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
+import pl.miasi2013.spring.lab2.model.Book;
+import pl.miasi2013.spring.lab2.model.Book.BookState;
 import pl.miasi2013.spring.lab2.model.relations.Order;
+
+class OrderMapper implements RowMapper<Order> {
+	@Override
+	public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new Order(rs.getInt("ID"), rs.getInt("BOOK_ID"), rs.getInt("UER_ID"),
+				rs.getInt("TIME"), rs.getString("BOOK_URL"));
+	}
+	
+}
 
 public class OrderRepository implements OrderRepositoryInterface {
 	
@@ -41,7 +56,8 @@ public class OrderRepository implements OrderRepositoryInterface {
 
 	@Override
 	public Collection<Order> getAllOrders() {
-		throw new NotImplementedException();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		return jdbcTemplate.query("select * from OrderO", new OrderMapper());
 	}
 
 }
