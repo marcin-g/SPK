@@ -21,12 +21,11 @@
 		<c:forEach var="order" items="${orders}">
 			<c:out value="${order.id}" />
 			<c:out value="${order.title}" />
-			<spring:url value="/orders/{orderId}" var="orderURL">
+			<spring:url value="/order/confirm/{orderId}" var="orderURL">
 				<spring:param name="orderId" value="${order.id}" />
 			</spring:url>
-			<a href="${orderURL}">edytuj</a>
-			<form:form method="delete" action="${orderURL}">
-				<button type="submit">Delete</button>
+			<form:form method="post" action="${orderURL}">
+				<button type="submit">Zatwierdź</button>
 			</form:form>
 			<br />
 
