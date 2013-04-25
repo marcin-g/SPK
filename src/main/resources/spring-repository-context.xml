@@ -13,5 +13,11 @@
 	<bean id="orderRepository" class="pl.miasi2013.spring.lab2.dao.OrderRepository">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<bean id="queueRepository" class="pl.miasi2013.spring.lab2.dao.QueueRepository">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="borrowRepository" class="pl.miasi2013.spring.lab2.dao.BorrowRepository">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 
 </beans>
