@@ -17,19 +17,18 @@
 
 	<!-- org.springframework.jdbc.datasource.DriverManagerDataSource not to 
 		be used by production code -->
-	<bean id="dataSource"
+<!--  	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbc.JDBCDriver" />
 		<property name="url" value="jdbc:hsqldb:hsql://localhost/xdb" />
 		<property name="username" value="SA" />
 	</bean>
+-->
 
 
-
-	<jdbc:initialize-database data-source="dataSource"
-		ignore-failures="ALL">
+	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<jdbc:script location="classpath:DDL.sql"/>
 		<jdbc:script location="classpath:DML.sql"/>
-	</jdbc:initialize-database>
+	</jdbc:embedded-database>
 
 </beans>
