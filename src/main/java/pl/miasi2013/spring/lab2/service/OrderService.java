@@ -6,9 +6,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
+import pl.miasi2013.spring.lab2.controller.BookController;
 import pl.miasi2013.spring.lab2.dao.OrderRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.Book;
+import pl.miasi2013.spring.lab2.model.Book.BookState;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.exceptions.OrderNotFoundException;
 
@@ -19,6 +23,7 @@ public class OrderService {
 	@Autowired
 	private BookService bookService;
 
+	@Transactional
 	public void insertOrder(Order order) {
 		orderRepository.insertOrder(order);
 	}
@@ -31,10 +36,12 @@ public class OrderService {
 		return order;
 	}
 
+	@Transactional
 	public void updateOrder(Order order) {
 		orderRepository.updateOrder(order);
 	}
 
+	@Transactional
 	public void deleteOrderById(long orderId) {
 		Order order=orderRepository.getOrderById(orderId);
 		if(order==null){
@@ -60,7 +67,31 @@ public class OrderService {
 		}
 		return map;
 	}
+
+	@Transactional
+	public void createOrderNewBook(Order order, Book book) {
+		order.setTime(System.currentTimeMillis());
+		order.setBookURL(book.getBookURL());
+		order.setUserId(0); 
+		book.setState(BookState.REPORTED);
+		long bookId = bookService.insertBook(book);
+		order.setBookId(bookId);
+		this.insertOrder(order);
+		
+	}
+	@Transactional
+	public void updateOrderWithBook(Order order,Book book){
+		order.setTime(System.currentTimeMillis());
+		order.setBookURL(book.getBookURL());
+		order.setBookId(book.getId());
+		bookService.updateBook(book);
+		this.updateOrder(order);
+	}
 	
+	public static  boolean isOrderValid(Order order, BindingResult result) {
+		boolean valid = true;
+		return valid;
+	}
 	
 	
 }

@@ -39,28 +39,13 @@ public class OrderController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processAddOrder(@ModelAttribute("order") Order order,
 			@ModelAttribute("book") Book book, BindingResult result) {
-
-		order.setTime(System.currentTimeMillis());
-		order.setBookURL(book.getBookURL());
-		order.setUserId(0); //TODO do wyrzucenia
-		book.setState(BookState.REPORTED);
-		if (!isOrderValid(order, result)
-				&& !BookController.isBookValid(book, result)) {
-			return "createOrUpdateOrderForm";
-		}
 		
-		long bookId = bookService.insertBook(book);
-		order.setBookId(bookId);
-		orderService.insertOrder(order);
+		orderService.createOrderNewBook(order,book);
 		return "redirect:/order";
 	}
 	@RequestMapping(value = "/confirm/{orderId}", method = RequestMethod.POST)
 	public String confirmOrder(@PathVariable("orderId") long orderId) {
-
-		Order order=orderService.getOrderById(orderId);
-		Book book=bookService.getBookById(order.getBookId());
-		book.setState(BookState.REVIEWED);
-		bookService.updateBook(book);
+		bookService.setBookStateByOrder(orderId, BookState.REVIEWED);
 		return "redirect:/order";
 	}
 
@@ -76,15 +61,8 @@ public class OrderController {
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.PUT)
 	public String updateOrder(@ModelAttribute("order") Order order,
 			@ModelAttribute("book") Book book, BindingResult result) {
-		order.setTime(System.currentTimeMillis());
-		order.setBookURL(book.getBookURL());
-		order.setBookId(book.getId());
-		if (!isOrderValid(order, result)
-				&& !BookController.isBookValid(book, result)) {
-			return "createOrUpdateOrderForm";
-		}
-		bookService.updateBook(book);
-		orderService.updateOrder(order);
+		
+		orderService.updateOrderWithBook(order,book);
 		return "redirect:/order";
 	}
 
@@ -94,8 +72,5 @@ public class OrderController {
 		return "redirect:/orders";
 	}
 
-	private boolean isOrderValid(Order order, BindingResult result) {
-		boolean valid = true;
-		return valid;
-	}
+	
 }

@@ -33,7 +33,7 @@ public class BorrowController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processAddBorrow(@ModelAttribute("borrow") Borrow borrow,
 			BindingResult result) {
-		if (!isBorrowValid(borrow,result)) {
+		if (!BorrowService.isBorrowValid(borrow,result)) {
 			return "createOrUpdateBorrowForm";
 		}
 		borrowService.insertBorrow(borrow);
@@ -48,7 +48,7 @@ public class BorrowController {
 	
 	@RequestMapping(value = "/{borrowId}", method = RequestMethod.PUT)
 	public String updateBorrow(@ModelAttribute("borrow") Borrow borrow,BindingResult result) {
-		if (!isBorrowValid(borrow,result)) {
+		if (!BorrowService.isBorrowValid(borrow,result)) {
 			return "createOrUpdateBorrowForm";
 		}
 		borrowService.updateBorrow(borrow);
@@ -61,8 +61,5 @@ public class BorrowController {
 		return "redirect:/borrows";		
 	}
 
-	private boolean isBorrowValid(Borrow borrow, BindingResult result) {
-		boolean valid=true;
-		return valid;
-	}
+	
 }

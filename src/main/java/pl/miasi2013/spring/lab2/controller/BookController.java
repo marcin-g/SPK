@@ -34,7 +34,7 @@ public class BookController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processAddBook(@ModelAttribute("book") Book book,
 			BindingResult result) {
-		if (!isBookValid(book,result)) {
+		if (!BookService.isBookValid(book,result)) {
 			return "createOrUpdateBookForm";
 		}
 		bookService.insertBook(book);
@@ -49,7 +49,7 @@ public class BookController {
 	
 	@RequestMapping(value = "/{bookId}", method = RequestMethod.PUT)
 	public String updateBook(@ModelAttribute("book") Book book,BindingResult result) {
-		if (!isBookValid(book,result)) {
+		if (!BookService.isBookValid(book,result)) {
 			return "createOrUpdateBookForm";
 		}
 		bookService.updateBook(book);
@@ -62,22 +62,7 @@ public class BookController {
 		return "redirect:/books";		
 	}
 
-	public static boolean isBookValid(Book book, BindingResult result) {
-		boolean valid=true;
-		if(!StringUtils.hasLength(book.getISBN())){
-			result.rejectValue("ISBN", "required", "required");
-			valid=false;
-		}
-		if(!StringUtils.hasLength(book.getTitle())){
-			result.rejectValue("title", "required", "required");
-			valid=false;
-		}
-		if(!StringUtils.hasLength(book.getPublisher())){
-			result.rejectValue("publisher", "required", "required");
-			valid=false;
-		}
-		return valid;
-	}
+	
 	
 
 }

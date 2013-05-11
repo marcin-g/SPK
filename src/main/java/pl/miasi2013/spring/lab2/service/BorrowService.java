@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
 import pl.miasi2013.spring.lab2.dao.BorrowRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
@@ -14,6 +16,7 @@ public class BorrowService {
 	@Autowired
 	private BorrowRepositoryInterface borrowRepository;
 
+	@Transactional
 	public void insertBorrow(Borrow borrow) {
 		borrowRepository.insertBorrow(borrow);
 	}
@@ -26,10 +29,12 @@ public class BorrowService {
 		return borrow;
 	}
 
+	@Transactional
 	public void updateBorrow(Borrow borrow) {
 		borrowRepository.updateBorrow(borrow);
 	}
 
+	@Transactional
 	public void deleteBorrowById(long borrowId) {
 		Borrow borrow=borrowRepository.getBorrowById(borrowId);
 		if(borrow==null){
@@ -45,6 +50,9 @@ public class BorrowService {
 		return borrowRepository.getAllBorrows();
 	}
 	
-	
+	public static boolean isBorrowValid(Borrow borrow, BindingResult result) {
+		boolean valid=true;
+		return valid;
+	}
 
 }

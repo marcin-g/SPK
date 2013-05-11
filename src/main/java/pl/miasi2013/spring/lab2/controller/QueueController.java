@@ -33,7 +33,7 @@ public class QueueController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processAddQueue(@ModelAttribute("queue") Queue queue,
 			BindingResult result) {
-		if (!isQueueValid(queue,result)) {
+		if (!QueueService.isQueueValid(queue,result)) {
 			return "createOrUpdateQueueForm";
 		}
 		queueService.insertQueue(queue);
@@ -48,7 +48,7 @@ public class QueueController {
 	
 	@RequestMapping(value = "/{queueId}", method = RequestMethod.PUT)
 	public String updateQueue(@ModelAttribute("queue") Queue queue,BindingResult result) {
-		if (!isQueueValid(queue,result)) {
+		if (!QueueService.isQueueValid(queue,result)) {
 			return "createOrUpdateQueueForm";
 		}
 		queueService.updateQueue(queue);
@@ -61,8 +61,5 @@ public class QueueController {
 		return "redirect:/queues";		
 	}
 
-	private boolean isQueueValid(Queue queue, BindingResult result) {
-		boolean valid=true;
-		return valid;
-	}
+	
 }
