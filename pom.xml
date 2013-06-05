@@ -18,7 +18,7 @@
 		<logback.version>1.0.9</logback.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<dandelion.datatables.version>0.8.10</dandelion.datatables.version>
-
+		<org.springsecurity-version>3.1.0.RELEASE</org.springsecurity-version>
 		<webjars-bootstrap.version>2.3.0</webjars-bootstrap.version>
 		<webjars-jquery-ui.version>1.9.2</webjars-jquery-ui.version>
 		<webjars-jquery.version>1.9.0</webjars-jquery.version>
@@ -171,6 +171,28 @@
 			<groupId>com.github.dandelion</groupId>
 			<artifactId>datatables-servlet2</artifactId>
 			<version>${dandelion.datatables.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springsecurity-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springsecurity-version}</version>
 		</dependency>
 	</dependencies>
 	<repositories>

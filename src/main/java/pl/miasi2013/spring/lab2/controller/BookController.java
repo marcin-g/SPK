@@ -21,8 +21,9 @@ public class BookController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllBooks(Model model) {
-		model.addAttribute("books", bookService.getAllVisibleBooks());
-		return "booksList";
+//		model.addAttribute("books", bookService.getAllVisibleBooks());
+//		return "booksList";
+		return "login";
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
