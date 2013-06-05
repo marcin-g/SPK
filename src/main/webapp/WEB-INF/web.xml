@@ -12,8 +12,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		- Applied by ContextLoaderServlet. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-service-context.xml, classpath:spring-repository-context.xml, classpath:spring-context.xml</param-value>
+		<param-value>classpath:spring-service-context.xml, classpath:spring-repository-context.xml, classpath:spring-context.xml, classpath:spring-mvc-security.xml</param-value>
 	</context-param>
+
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -34,7 +35,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-
+	
 	<!-- used so we can use forms of method type 'PUT' and 'DELETE' see here: 
 		http://static.springsource.org/spring/docs/current/spring-framework-reference/html/view.html#rest-method-conversion -->
 	<filter>
@@ -46,6 +47,18 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<filter-name>httpMethodFilter</filter-name>
 		<servlet-name>lab2servlet</servlet-name>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<servlet-name>lab2servlet</servlet-name>
+	</filter-mapping>
+
+
 
 	<!-- UTF-8 -->
 	<filter>

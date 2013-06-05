@@ -27,6 +27,7 @@
 
 	<!-- Map / to welcome view -->
 	<mvc:view-controller path="/" view-name="welcome" />
+	<mvc:view-controller path="/login" />
 
 
 	<bean id="viewResolver"
