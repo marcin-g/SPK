@@ -18,7 +18,11 @@
                     class="icon-th-list"></i> Zamówienia</a></li>
             <li style="width: 170px;"><a href="<spring:url value="/order/new.html" htmlEscape="true" />"><i
                     class="icon-plus-sign"></i> Zamów książkę</a></li>
-            </security:authorize>                       
+            </security:authorize>         
+           <security:authorize access="isAuthenticated()"> 
+            <li style="width: 130px;"><a href="<spring:url value="/j_spring_security_logout" htmlEscape="true" />"><i
+                	    class="icon-home"></i> Wyloguj</a></li>
+			</security:authorize>                      
         </ul>
     </div>
 </div>
