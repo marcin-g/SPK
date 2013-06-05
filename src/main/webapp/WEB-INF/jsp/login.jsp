@@ -8,8 +8,18 @@
 <%@ page
 	import="org.springframework.security.core.AuthenticationException"%>
 
+<html lang="en">
+
+<jsp:include page="fragments/headTag.jsp" />
+
+<body>
+	<div class="container">
+		<jsp:include page="fragments/bodyHeader.jsp" />
+
+
 	<form name="f" method="post" action="<c:url value="/loginProcess" />" id="login-form"
 		class="login medium">
+		<div class="${cssGroup}">
 		<c:if test="${not empty param.login_error}">
 			<div id="log-in-error" class="message error">
 				Your login attempt was not successful, try again.<br />
@@ -17,20 +27,18 @@
 				<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 			</div>
 		</c:if>
-		<fieldset>
-			<legend>Mój formularz logowania</legend>
-			<ul>
-				<li><label for="j_usernam">login</label> <input type="text"
-					name="j_username" id="j_username"
-					value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}"/></c:if>' />
-					</li>
-				<li><label for="login-password">hasło</label> <input
-					type="password" name="j_password" id="j_password" /> </li>
-				<li class="submit">
+		
+				<label for="j_username">Login</label>
+				<input type="text"name="j_username" id="j_username"
+					value='<c:if test="${not empty param.login_error}">
+					<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}"/></c:if>' />
+					<label for="j_password">Hasło</label>
+					<input type="password" name="j_password" id="j_password" /><br />
 					<button id="login" type="submit">Zaloguj się</button>
-				</li>
-			</ul>
-		</fieldset>
+</div>
 	</form>
+	</div>
+</body>
 
+</html>
 
