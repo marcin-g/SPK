@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -32,11 +34,14 @@
 				<input type="text"name="j_username" id="j_username"
 					value='<c:if test="${not empty param.login_error}">
 					<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.authentication.principal}"/></c:if>' />
+					
+					
 					<label for="j_password">Hasło</label>
 					<input type="password" name="j_password" id="j_password" /><br />
 					<button id="login" type="submit">Zaloguj się</button>
-</div>
+	</div>
 	</form>
+	<jsp:include page="fragments/footer.jsp" />
 	</div>
 </body>
 
