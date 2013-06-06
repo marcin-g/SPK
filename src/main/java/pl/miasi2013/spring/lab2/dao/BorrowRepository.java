@@ -1,5 +1,6 @@
 package pl.miasi2013.spring.lab2.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.sql.DataSource;
@@ -40,7 +41,14 @@ public class BorrowRepository implements BorrowRepositoryInterface {
 	@Override
 	public Collection<Borrow> getAllBorrows() {
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
+		Collection<Borrow> borrowList=new ArrayList<Borrow>();
+		Borrow borrow;
+		borrow=new Borrow();
+		borrowList.add(borrow);
+		borrow.setId(1);
+		borrow.setBookId(1);
+		return borrowList;
 	}
 
 }
