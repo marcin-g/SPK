@@ -18,9 +18,12 @@
 						Zamów książkę</a></li>
 			</security:authorize>
 
-			<security:authorize access="hasRole('ROLE_ADMIN')">
+			<security:authorize access="hasRole('ROLE_SUPERUSER') || hasRole('ROLE_ADMIN')">
 				<li style="width: 130px;"><a href="<spring:url value="/order.html" htmlEscape="true" />"><i
 						class="icon-th-list"></i> Zamówienia</a></li>
+			</security:authorize>
+			
+			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<li style="width: 150px;"><a href="<spring:url value="/books/new" htmlEscape="true" />"><i
 						class="icon-th-list"></i> Dodaj książkę</a></li>
 			</security:authorize>
