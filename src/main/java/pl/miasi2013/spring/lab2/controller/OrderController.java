@@ -59,7 +59,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/confirm/{orderId}", method = RequestMethod.POST)
 	public String confirmOrder(@PathVariable("orderId") long orderId) {
-		bookService.setBookStateByOrder(orderId, BookState.REVIEWED);
+		bookService.setBookStateByOrder(orderId, BookState.AWAITING_RECEPTION);
 		return "redirect:/order";
 	}
 
