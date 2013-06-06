@@ -14,14 +14,11 @@
 <body>
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
-		<c:choose>
-			<c:when test="${empty book.id}">
-				<c:set var="method" value="post" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="method" value="put" />
-			</c:otherwise>
-		</c:choose>
+
+
+		<spring:url value="/books/edit/{bookId}" var="bookEditURL">
+			<spring:param name="bookId" value="${book.id}" />
+		</spring:url>
 
 
 		<div class="${cssGroup}">
@@ -38,7 +35,14 @@
 		</div>
 		<div class="form-actions">
 			<security:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit">Edytuj książkę</button>
+				<button type="submit">Edytuj</button>
+				<button type="submit">Edytuj</button>
+				<form:form method="delete" action="${bookEditURL}">
+					<button type="submit">Edytuj</button>
+				</form:form>
+				<form:form method="delete" action="${bookEditURL}">
+					<button type="submit">Usuń</button>
+				</form:form>
 			</security:authorize>
 		</div>
 
