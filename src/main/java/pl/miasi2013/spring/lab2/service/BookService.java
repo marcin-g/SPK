@@ -66,7 +66,13 @@ public class BookService {
 		book.setState(state);
 		this.updateBook(book);
 	}
-	
+
+	@Transactional
+	public void updateBookReview(Book book) {
+		Book original=getBookById(book.getId());
+		original.setBookURL(book.getBookURL());
+		updateBook(original);
+	}
 	public static boolean isBookValid(Book book, BindingResult result) {
 		boolean valid=true;
 		if(!StringUtils.hasLength(book.getISBN())){
@@ -83,4 +89,5 @@ public class BookService {
 		}
 		return valid;
 	}
+
 }

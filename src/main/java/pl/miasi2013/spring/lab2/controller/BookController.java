@@ -70,8 +70,8 @@ public class BookController {
 	}
 	@RequestMapping(value = "/review/{bookId}", method = RequestMethod.POST)
 	public String updateBookReview(@ModelAttribute("book") Book book, Model model) {
-		bookService.updateBook(book);	
-		return "createOrUpdateBookForm";
+		bookService.updateBookReview(book);	
+		return "redirect:/books/{bookId}";	
 	}
 	
 	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.PUT)
