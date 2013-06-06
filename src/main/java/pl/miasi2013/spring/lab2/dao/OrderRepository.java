@@ -86,8 +86,13 @@ public class OrderRepository implements OrderRepositoryInterface {
 	}
 	@Override
 	public Order getOrderByBookId(long bookId) {
-		// TODO Auto-generated method stub
-		return null;
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {bookId};
+		List<Order> orders = jdbcTemplate.query("select * from OrderO where book_id = (?)", parameters, new OrderMapper());
+		if (orders.isEmpty()) {
+			return null;
+		}
+		return orders.get(0);
 	}
 
 
