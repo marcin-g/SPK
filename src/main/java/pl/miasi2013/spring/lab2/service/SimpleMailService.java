@@ -65,4 +65,40 @@ public class SimpleMailService{
 		watek.start();
     	
     }
+    
+    public void sendBookOrdered(final Book book, final User user){
+        Runnable sendMail=new Runnable() {
+			
+			@Override
+			public void run() {
+				synchronized (lock) {
+					System.err.println("wysylam "+templateMessage.getFrom());   
+			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+			        msg.setSubject("Zamówiono nową książkę");
+			        msg.setTo(user.getEmail());
+			        List<String> mails = new ArrayList<String>();
+			        for (User admin : userService.getAdmins()) {
+			        	mails.add(admin.getEmail());
+			        }
+			        msg.setCc(mails.toArray(new String[mails.size()]));
+			        msg.setText(new StringBuilder()
+			           .append("Zamówiona książka:")
+			           .append(book.getTitle() + ", " + book.getAuthor() + ", " + book.getPublisher() + ", " + book.getYear())
+			           .toString()
+			        );
+			        try{
+			            mailSender.send(msg);
+			        }
+			        catch(MailException ex) {
+			            // simply log it and go on...
+			            System.err.println(ex.getMessage());            
+			        }
+				}
+			}
+		};
+		
+		Thread watek=new Thread(sendMail);
+		watek.start();
+    	
+    }
 }
