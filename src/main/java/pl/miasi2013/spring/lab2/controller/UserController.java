@@ -49,19 +49,19 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "users/", method = RequestMethod.GET)
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public String getAllUsers(Model model) {
 		model.addAttribute("users", userService.getAllUsers());
 		return "usersList";
 	}
 	
-	@RequestMapping(value = "users/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/new", method = RequestMethod.GET)
 	public String initCreationForm(Model model) {
 		model.addAttribute("user", new User());
 		return "createOrUpdateUserForm";
 	}
 
-	@RequestMapping(value = "users/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/new", method = RequestMethod.POST)
 	public String processAddBook(@ModelAttribute("user") User user,
 			BindingResult result) {
 		if (!UserService.isUserValid(user,result)) {
@@ -70,13 +70,13 @@ public class UserController {
 		userService.insertUser(user);
 		return "redirect:/users";
 	}
-	@RequestMapping(value = "users/edit/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/edit/{userId}", method = RequestMethod.GET)
 	public String initEditBook(@PathVariable("userId") long userId, Model model) {
 		model.addAttribute("user", userService.getUserById(userId));		
 		return "createOrUpdateUserForm";
 	}
 	
-	@RequestMapping(value = "users/edit/{userId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/users/edit/{userId}", method = RequestMethod.PUT)
 	public String updateBook(@ModelAttribute("user") User user,BindingResult result) {
 		if (!UserService.isUserValid(user,result)) {
 			return "createOrUpdateUserForm";

@@ -14,7 +14,7 @@
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
 		<c:choose>
-			<c:when test="${empty book.id}">
+			<c:when test="${empty user.id}">
 				<c:set var="method" value="post" />
 			</c:when>
 			<c:otherwise>
@@ -22,7 +22,7 @@
 			</c:otherwise>
 		</c:choose>
 
-		<form:form modelAttribute="book" method="${method}" class="form-horizontal">
+		<form:form modelAttribute="user" method="${method}" class="form-horizontal">
 			<div class="${cssGroup}">
 				<label class="control-label">Login</label>
 				<div class="controls">
@@ -53,11 +53,11 @@
 
 				<label class="control-label">Typ użytkownika</label>
 				<div class="controls">
-					<form:select path="role">
+					<form:select path="roles">
 						<option value="ROLE_USER">Zwykły użytkownik</option>
 						<option value="ROLE_SUPERUSER">Superuser</option>
 					</form:select>
-					<span class="help-inline"><form:errors path="role" cssClass="control-group error" /></span>
+					<span class="help-inline"><form:errors path="roles" cssClass="control-group error" /></span>
 				</div>
 
 			</div>
