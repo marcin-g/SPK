@@ -18,6 +18,8 @@ public interface BorrowRepositoryInterface {
 	
 	Collection<Borrow> getUserBorrows(long userId);
 	
-	Borrow getBorrowByBookId(long bookId);
+	Collection<Borrow> getBorrowsByBookId(long bookId);
+	
+	Borrow getActualBorrowByBook(long bookId);
 
 }
