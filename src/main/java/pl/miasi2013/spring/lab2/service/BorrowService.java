@@ -1,5 +1,6 @@
 package pl.miasi2013.spring.lab2.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,6 @@ import pl.miasi2013.spring.lab2.dao.BorrowRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
-import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.exceptions.BorrowNotFoundException;
 
 @Service
@@ -71,7 +71,8 @@ public class BorrowService {
 	}
 
 	public Collection<Borrow> getUserBorrows(User user) {
-		return borrowRepository.getUserBorrows(user.getId());
+		//return borrowRepository.getUserBorrows(user.getId());
+		return new ArrayList<Borrow>();
 	}
 	public Map<Borrow,Book> getUserBorrowsWithBooks(User user) {
 		
