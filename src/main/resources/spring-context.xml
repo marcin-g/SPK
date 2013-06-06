@@ -1,63 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<tx:annotation-driven />
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	
 
-	<!-- org.springframework.jdbc.datasource.DriverManagerDataSource not to 
-		be used by production code -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+	<!-- org.springframework.jdbc.datasource.DriverManagerDataSource not to be used by production code -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbc.JDBCDriver" />
 		<property name="url" value="jdbc:hsqldb:hsql://localhost/xdb" />
 		<property name="username" value="SA" />
 	</bean>
 
-<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-  <property name="host" value="poczta.o2.pl" />
-	<property name="username" value="miasi2013@o2.pl" />
-	<property name="password" value="mailnamiasi" />
-	<property name="port" value="587"></property>
-	<property name="protocol" value="smtp"></property>
-	<property name="javaMailProperties">
-	   <props>
-       	      <prop key="mail.smtp.auth">true</prop>
-       	      <prop key="mail.smtp.host">poczta.o2.pl</prop>
-       	      <prop key="mail.smtp.starttls.enable">true</prop>
-       	      <prop key="mail.smtp.port">587</prop>
-       	      <prop key="mail.smtp.timeout">10000</prop>
-       	      <prop key="mail.smtp.quitwait">false</prop>
-                <prop key="mail.debug">true</prop>
-       	   </props>
-	</property>
-</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="poczta.o2.pl" />
+		<property name="username" value="miasi2013@o2.pl" />
+		<property name="password" value="mailnamiasi" />
+		<property name="port" value="587"></property>
+		<property name="protocol" value="smtp"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.host">poczta.o2.pl</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.port">587</prop>
+				<prop key="mail.smtp.timeout">10000</prop>
+				<prop key="mail.smtp.quitwait">false</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 
-<!-- this is a template message that we can pre-load with default state -->
-<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
-  <property name="from" value="miasi2013@tlen.pl"/>
-  <property name="subject" value="Your order"/>
-</bean>
+	<!-- this is a template message that we can pre-load with default state -->
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="miasi2013@tlen.pl" />
+		<property name="subject" value="Your order" />
+	</bean>
 
-<bean id="simpleMailSender" class="pl.miasi2013.spring.lab2.service.SimpleMailService">
-  <property name="mailSender" ref="mailSender"/>
-  <property name="templateMessage" ref="templateMessage"/>
-</bean>
+	<bean id="simpleMailSender" class="pl.miasi2013.spring.lab2.service.SimpleMailService">
+		<property name="mailSender" ref="mailSender" />
+		<property name="templateMessage" ref="templateMessage" />
+	</bean>
 
-	<jdbc:initialize-database data-source="dataSource"
-		ignore-failures="ALL">
-		<jdbc:script location="classpath:DDL.sql"/>
-		<jdbc:script location="classpath:DML.sql"/>
+	<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+		<jdbc:script location="classpath:DDL.sql" />
+		<jdbc:script location="classpath:DML.sql" />
 	</jdbc:initialize-database>
 
 </beans>

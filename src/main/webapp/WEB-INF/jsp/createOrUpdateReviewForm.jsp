@@ -13,21 +13,13 @@
 <body>
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
-		<c:choose>
-			<c:when test="${empty book.id}">
-				<c:set var="method" value="post" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="method" value="put" />
-			</c:otherwise>
-		</c:choose>
 
-		<form:form modelAttribute="book" method="${method}" class="form-horizontal">
+		<form:form modelAttribute="book" method="post" class="form-horizontal">
 			<div class="${cssGroup}">
 				<label class="control-label">Recenzja</label>
 				<div class="controls">
-					<form:input path="year" />
-					<span class="help-inline"><form:errors path="year" cssClass="control-group error" /></span>
+					<form:input path="reviewURL" />
+					<span class="help-inline"><form:errors path="reviewURL" cssClass="control-group error" /></span>
 				</div>
 
 			</div>
