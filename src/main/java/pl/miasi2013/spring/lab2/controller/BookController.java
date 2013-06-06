@@ -23,7 +23,7 @@ public class BookController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllBooks(Model model) {
-		model.addAttribute("books", bookService.getAllVisibleBooks());
+		model.addAttribute("books", bookService.getAllBooks());
 		return "booksList";
 	}
 	
