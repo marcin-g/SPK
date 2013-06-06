@@ -66,12 +66,12 @@ public class BookController {
 	@RequestMapping(value = "/review/{bookId}", method = RequestMethod.GET)
 	public String initEditBookReview(@PathVariable("bookId") long bookId, Model model) {
 		model.addAttribute("book", bookService.getBookById(bookId));	
-		return "createOrUpdateBookForm";
+		return "createOrUpdateReviewForm";
 	}
 	@RequestMapping(value = "/review/{bookId}", method = RequestMethod.POST)
 	public String updateBookReview(@ModelAttribute("book") Book book, Model model) {
 		bookService.updateBook(book);	
-		return "createOrUpdateBookForm";
+		return "createOrUpdateReviewForm";
 	}
 	
 	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.PUT)
