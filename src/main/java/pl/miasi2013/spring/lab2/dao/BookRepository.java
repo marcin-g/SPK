@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import pl.miasi2013.spring.lab2.model.Book;
+import pl.miasi2013.spring.lab2.model.relations.Borrow;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 
 
@@ -89,6 +90,10 @@ public class BookRepository implements BookRepositoryInterface {
 		if (!orders.isEmpty()) {
 			Order order = orders.get(0);
 			jdbcTemplate.update("delete from OrderO where id = ?", order.getId());
+		}
+		List<Borrow> borrows = jdbcTemplate.query("select * from Borrow where book_id = (?)", parameters, new BorrowMapper());
+		for (Borrow borrow : borrows) {
+			jdbcTemplate.update("delete from Borrow where id = ?", borrow.getId());
 		}
 		jdbcTemplate.update("delete from Book where id = ?", book.getId());
 	}
