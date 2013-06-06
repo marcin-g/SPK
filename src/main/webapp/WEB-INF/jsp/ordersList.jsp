@@ -33,6 +33,8 @@
 				<button type="submit">Zatwierdź</button>
 				</form:form>
 			</security:authorize>
+			
+			<br/>
 
 		</c:forEach>
 		<jsp:include page="fragments/footer.jsp" />
