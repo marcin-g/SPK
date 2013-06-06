@@ -74,12 +74,11 @@ public class OrderService {
 	public void createOrderNewBook(Order order, Book book) {
 		order.setTime(System.currentTimeMillis());
 		order.setBookURL(book.getBookURL());
-		order.setUserId(0); 
 		book.setState(BookState.REPORTED);
 		long bookId = bookService.insertBook(book);
 		order.setBookId(bookId);
 		this.insertOrder(order);
-		simpleMailService.sendBookInfo("aa");
+		//simpleMailService.sendBookInfo("aa");
 		
 	}
 	

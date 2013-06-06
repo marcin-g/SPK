@@ -37,7 +37,6 @@ public class OrderController {
 			model.addAttribute("orders", orderService
 					.getOrdersWithBooks(orderService.getAllOrdersByUserId(user
 							.getId())));
-
 		}
 		return "ordersList";
 	}
