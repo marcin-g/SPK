@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import pl.miasi2013.spring.lab2.dao.BookRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.Book.BookState;
+import pl.miasi2013.spring.lab2.model.User;
+import pl.miasi2013.spring.lab2.model.relations.Borrow;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.exceptions.BookNotFoundException;
 
@@ -20,6 +22,12 @@ public class BookService {
 	private BookRepositoryInterface bookRepository;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private QueueService queueService;
+	@Autowired
+	private BorrowService borrowService;
 
 	public Collection<Book> getAllBooks() {
 		return bookRepository.getAllBooks();
@@ -88,6 +96,36 @@ public class BookService {
 			valid=false;
 		}
 		return valid;
+	}
+
+	public int getBookStatus(long bookId) {
+		int returnValue=-1;
+		try{
+			Book book=getBookById(bookId);
+			if(book.getState()==BookState.AVAILABLE){
+				return 0;
+			}
+			else{
+				Borrow borrow=borrowService.getBorrowByBookId(bookId);
+				User user=userService.getLoggedUser();
+				if(user.getId()==borrow.getUserId()){
+					return 1;
+				}
+				else{
+					if(queueService.isQueueByUser(book.getId(), user.getId())){
+						return 2;
+					}
+					else{
+						return 3;
+					}
+				}
+			}
+			
+		}
+		catch(BookNotFoundException e){
+			returnValue=-1;
+		}
+		return returnValue;
 	}
 
 }

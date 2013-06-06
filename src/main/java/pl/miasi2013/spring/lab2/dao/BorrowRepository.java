@@ -85,7 +85,7 @@ public class BorrowRepository implements BorrowRepositoryInterface {
 	public Borrow getBorrowByBookId(long bookId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] parameters = {bookId};
-		List<Borrow> borrows jdbcTemplate.query("select * from Borrow where book_id = (?)", parameters, new BorrowMapper());
+		List<Borrow> borrows=jdbcTemplate.query("select * from Borrow where book_id = (?)", parameters, new BorrowMapper());
 		if (borrows.isEmpty()) {
 			return null;
 		}
