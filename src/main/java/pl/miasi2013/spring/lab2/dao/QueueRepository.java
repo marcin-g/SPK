@@ -43,4 +43,10 @@ public class QueueRepository implements QueueRepositoryInterface {
 		return null;
 	}
 
+	@Override
+	public Collection<Queue> getQueuesByBookId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

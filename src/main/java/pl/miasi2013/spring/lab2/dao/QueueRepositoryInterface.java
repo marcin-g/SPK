@@ -15,6 +15,8 @@ public interface QueueRepositoryInterface {
 	void deleteQueue(Queue queue);
 
 	Collection<Queue> getAllQueues();
+	
+	Collection<Queue> getQueuesByBookId();
 
 }
 
