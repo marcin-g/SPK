@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.miasi2013.spring.lab2.dao.UserRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.User;
+import pl.miasi2013.spring.lab2.dao.UserRepositoryInterface;
 
 public class UserService implements UserDetailsService {
 	@Autowired
@@ -25,6 +25,16 @@ public class UserService implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username)
+			throws UsernameNotFoundException {
+		User user = userRepository.getUserByUsername(username);
+		if(user == null){
+			throw new UsernameNotFoundException("User not found");
+		}
+		return user;
+	}
+	
+	@Transactional
+	public User getUserByUsername(String username)
 			throws UsernameNotFoundException {
 		User user = userRepository.getUserByUsername(username);
 		if(user == null){
