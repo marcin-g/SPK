@@ -78,6 +78,10 @@ public class User implements UserDetails{
 	public void addRole(String role) {
 		this.roles.add(role);
 	}
+	
+	public boolean hasRole(String role) {
+		return this.roles.contains(role);
+	}
 
 	public void setPassword(String password) {
 		this.password = password;
