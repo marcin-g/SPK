@@ -19,6 +19,8 @@ public interface QueueRepositoryInterface {
 	Collection<Queue> getQueuesByBookId(long bookId);
 	
 	public boolean isBookQueuedByUser(long bookId, long userId);
+	
+	Queue getQueueByUserIdAndBookId(long userId, long bookId);
 
 }
 
