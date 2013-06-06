@@ -34,7 +34,7 @@ public class UserRepository implements UserRepositoryInterface {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.update("update UserU set firstname = ?, lastname = ?, email = ?, roles = ?, password = ? where id = ?",
 				user.getFirstname(), user.getLastname(), user.getEmail(), StringUtils.join(user.getRoles(), ", "),
-				user.getPassword());
+				user.getPassword(), user.getId());
 	}
 
 	@Override
