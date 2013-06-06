@@ -37,8 +37,8 @@ public class SimpleMailService{
 					System.err.println("wysylam "+templateMessage.getFrom());   
 			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
 			        msg.setSubject("Upłynął czas dla książki");
+			        msg.setTo(user.getEmail());
 			        List<String> mails = new ArrayList<String>();
-			        mails.add(user.getEmail());
 			        for (User admin : userService.getAdmins()) {
 			        	mails.add(admin.getEmail());
 			        }
