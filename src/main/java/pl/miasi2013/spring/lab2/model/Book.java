@@ -12,8 +12,9 @@ public class Book {
 	private BookState state;
 
 	public enum BookState {
-		REPORTED, REVIEWED, AVAILABLE
+		REPORTED, REVIEWED, AVAILABLE, BORROWED, UNAVAILABLE, AWAITING_RETURN, AWAITING_RECEPTION
 	}
+//	BOOK_STATUSES = (‘realizacja zamówienia’, ‘u recenzenta’, ‘na półce’, ‘wypożyczona’, ‘niedostępna’, ‘oczekiwanie na zwrot’, ‘oczekiwanie na odbiór’)
 
 	public Book() {
 	}
