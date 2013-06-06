@@ -74,6 +74,12 @@ public class BookService {
 		book.setState(state);
 		this.updateBook(book);
 	}
+	@Transactional
+	public void setBookState(long bookId,BookState state){
+		Book book=this.getBookById(bookId);
+		book.setState(state);
+		this.updateBook(book);
+	}
 
 	@Transactional
 	public void updateBookReview(Book book) {

@@ -26,6 +26,12 @@ public class BookController {
 		model.addAttribute("books", bookService.getAllBooks());
 		return "booksList";
 	}
+
+	@RequestMapping(value = "/reviewing/{bookId}", method = RequestMethod.POST)
+	public String confirmReviewing(@PathVariable("bookId") long bookId) {
+		bookService.setBookState(bookId, BookState.REVIEWED);
+		return "redirect:/books";
+	}
 	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String initProfileForm(Model model) {
