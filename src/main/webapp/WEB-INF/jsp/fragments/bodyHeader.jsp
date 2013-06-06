@@ -6,7 +6,7 @@
 <div class="navbar" style="width: 1001px;">
 	<div class="navbar-inner">
 		<ul class="nav">
-			<li style="width: 100px;"><a href="<spring:url value="/books.html" htmlEscape="true" />"><i
+			<li style="width: 100px;"><a href="<spring:url value="/books" htmlEscape="true" />"><i
 					class="icon-home"></i> Książki</a></li>
 			<security:authorize access="!isAuthenticated()">
 				<li style="width: 100px;"><a href="<spring:url value="/login" htmlEscape="true" />"><i
