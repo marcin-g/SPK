@@ -52,7 +52,8 @@ public class OrderController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processAddOrder(@ModelAttribute("order") Order order,
 			@ModelAttribute("book") Book book, BindingResult result) {
-
+		
+		order.setUserId(userService.getLoggedUser().getId());
 		orderService.createOrderNewBook(order, book);
 		return "redirect:/order";
 	}
