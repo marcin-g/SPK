@@ -22,6 +22,8 @@ public class OrderService {
 	private OrderRepositoryInterface orderRepository;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private SimpleMailService simpleMailService;
 
 	@Transactional
 	public void insertOrder(Order order) {
@@ -77,6 +79,7 @@ public class OrderService {
 		long bookId = bookService.insertBook(book);
 		order.setBookId(bookId);
 		this.insertOrder(order);
+		//simpleMailService.sendBookInfo("aa");
 		
 	}
 	@Transactional
