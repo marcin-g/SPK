@@ -29,7 +29,7 @@ public class BookController {
 
 	@RequestMapping(value = "/reviewing/{bookId}", method = RequestMethod.POST)
 	public String confirmReviewing(@PathVariable("bookId") long bookId) {
-		bookService.setBookState(bookId, BookState.AWAITING_RECEPTION);
+		bookService.setBookState(bookId, BookState.REVIEWED);
 		return "redirect:/books";
 	}
 	
