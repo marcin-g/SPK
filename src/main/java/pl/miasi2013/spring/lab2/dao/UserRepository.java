@@ -31,8 +31,8 @@ public class UserRepository implements UserRepositoryInterface {
 	@Override
 	public void updateUser(User user) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update("update UserU set surname = ?, email = ?, roles = ?, password = ? where id = ?",
-				user.getSurname(), user.getEmail(), StringUtils.join(user.getRoles(), ", "),
+		jdbcTemplate.update("update UserU set firstname = ?, lastname = ?, email = ?, roles = ?, password = ? where id = ?",
+				user.getFirstname(), user.getLastname(), user.getEmail(), StringUtils.join(user.getRoles(), ", "),
 				user.getPassword());
 	}
 
@@ -44,12 +44,13 @@ public class UserRepository implements UserRepositoryInterface {
 		    new PreparedStatementCreator() {
 		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 		            PreparedStatement ps =
-		                connection.prepareStatement("insert into UserU (usename, surname, email, roles, password) values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		                connection.prepareStatement("insert into UserU (usename, firstname, lastname, email, roles, password) values (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		            ps.setString(1, user.getUsername());
-		            ps.setString(2, user.getSurname());
-		            ps.setString(3, user.getEmail());
-		            ps.setString(4, StringUtils.join(user.getRoles(), ", "));
-		            ps.setString(5, user.getPassword());
+		            ps.setString(2, user.getFirstname());
+		            ps.setString(3, user.getLastname());
+		            ps.setString(4, user.getEmail());
+		            ps.setString(5, StringUtils.join(user.getRoles(), ", "));
+		            ps.setString(6, user.getPassword());
 		            return ps;
 		        }
 		    },

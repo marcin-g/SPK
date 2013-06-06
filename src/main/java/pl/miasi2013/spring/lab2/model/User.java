@@ -11,7 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails{
 	private long id;
 	private String username;
-	private String surname;
+	private String firstname;
+	private String lastname;
 	private String email;
 	private Collection<String> roles;
 	private String password;
@@ -19,11 +20,12 @@ public class User implements UserDetails{
 	public User() {
 	}
 
-	public User(long id,String username, String surname, String email, Collection<String> roles, String password) {
+	public User(long id,String username, String firstname, String lastname, String email, Collection<String> roles, String password) {
 		super();
 		this.setId(id);
 		this.username = username;
-		this.surname = surname;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.email = email;
 		this.roles = roles;
 		this.password = password;
@@ -33,12 +35,20 @@ public class User implements UserDetails{
 		this.username = username;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
