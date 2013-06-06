@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
+import pl.miasi2013.spring.lab2.service.BookService;
 import pl.miasi2013.spring.lab2.service.BorrowService;
 import pl.miasi2013.spring.lab2.service.UserService;
 
@@ -23,14 +24,15 @@ public class BorrowController {
 	@Autowired
 	private BorrowService borrowService;
 	@Autowired
+	private BookService bookService;
+	@Autowired
 	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllUserBorrows(Model model) {
 		try {
 			User user = userService.getLoggedUser();
-			model.addAttribute("borrows",
-					borrowService.getUserBorrowsWithBooks(user));
+			model.addAttribute("borrows", borrowService.getUserBorrowsWithBooks(user.getId()));
 			return "borrowsList";
 		} catch (UsernameNotFoundException e) {
 			return "redirect:/";
@@ -80,16 +82,17 @@ public class BorrowController {
 	public String getUserHistory(@PathVariable("userId") long userId,
 			Model model) {
 		model.addAttribute("borrows", borrowService
-				.getBorrowsWithBooks(borrowService.getUserBorrows(userId)));
-		return "borrowsList";
+				.getUserBorrowsWithBooks(userId));
+		model.addAttribute("user",userService.getUserById(userId));
+		return "userBorrowsList";
 	}
 
 	@RequestMapping(value = "/book/{bookId}", method = RequestMethod.GET)
 	public String getBookHistory(@PathVariable("bookId") long bookId,
 			Model model) {
-		model.addAttribute("borrows", borrowService
-				.getBorrowsWithBooks(borrowService.getBorrowsByBookId(bookId)));
-		return "borrowsList";
+		model.addAttribute("borrows", borrowService.getBooksBorrowsWithUser(bookId));
+		model.addAttribute("book", bookService.getBookById(bookId));
+		return "bookBorrowsList";
 	}
 
 }

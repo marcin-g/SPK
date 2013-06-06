@@ -23,6 +23,8 @@ public class BorrowService {
 	private BorrowRepositoryInterface borrowRepository;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private UserService userService;
 
 	@Transactional
 	public void insertBorrow(Borrow borrow) {
@@ -89,11 +91,18 @@ public class BorrowService {
 		return borrowRepository.getUserBorrows(userId);
 	}
 	@Transactional
-	public Map<Borrow,Book> getUserBorrowsWithBooks(User user) {
-		
+	public Map<Borrow,Book> getUserBorrowsWithBooks(long userId) {
 		HashMap<Borrow,Book> map=new HashMap<Borrow,Book>();
-		for(Borrow borrow:getUserBorrows(user)){
+		for(Borrow borrow:getUserBorrows(userService.getUserById(userId))){
 			map.put(borrow, bookService.getBookById(borrow.getBookId()));
+		}
+		return map;
+	}
+	@Transactional
+	public Map<Borrow,User> getBooksBorrowsWithUser(long bookId) {
+		HashMap<Borrow,User> map=new HashMap<Borrow,User>();
+		for(Borrow borrow:getBorrowsByBookId(bookId)){
+			map.put(borrow, userService.getUserById(borrow.getUserId()));
 		}
 		return map;
 	}

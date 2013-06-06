@@ -76,7 +76,7 @@ public class UserController {
 		return "createOrUpdateUserForm";
 	}
 	
-	@RequestMapping(value = "/users/edit/{userId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/users/edit/{userId}", method = RequestMethod.POST)
 	public String updateBook(@ModelAttribute("user") User user,BindingResult result) {
 		if (!UserService.isUserValid(user,result)) {
 			return "createOrUpdateUserForm";
