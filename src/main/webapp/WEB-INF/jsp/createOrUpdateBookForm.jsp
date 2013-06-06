@@ -51,6 +51,17 @@
 					<form:input path="year" />
 					<span class="help-inline"><form:errors path="year" cssClass="control-group error" /></span>
 				</div>
+
+				<label class="control-label">Status</label>
+				<div class="controls">
+					<form:select path="state">
+					<option value="AVAILABLE">dostępna</option>
+					<option value="REPORTED">adostępnasfsaa</option>
+					<option value="REVIEWED">dfasfasostępna</option>
+					</form:select>
+					<span class="help-inline"><form:errors path="state" cssClass="control-group error" /></span>
+				</div>
+
 			</div>
 			<div class="form-actions">
 				<button type="submit">Edytuj książkę</button>
