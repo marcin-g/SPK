@@ -1,1 +1,1 @@
-insert into UserU(name, surname, userType, email) values('admin', 'admin', '', 'admin@admin.pl');
+insert into UserU(username, surname, email, roles, password) values('admin', 'admin', 'admin@admin.pl', 'ROLE_ADMIN', '098f6bcd4621d373cade4e832627b4f6');

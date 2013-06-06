@@ -1,26 +1,14 @@
-
--- ---
--- Globals
--- ---
-
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
-
--- ---
--- Table 'User'
--- 
--- ---
-
 DROP TABLE OrderO IF EXISTS;
 DROP TABLE Book IF EXISTS;
 DROP TABLE UserU IF EXISTS;
 		
 CREATE TABLE UserU (
   id INT NOT NULL primary key IDENTITY,
-  name VARCHAR(255) NULL,
+  username VARCHAR(255) NOT NULL,
   surname VARCHAR(255) NULL,
-  userType VARCHAR(255) NULL,
-  email VARCHAR(255) NULL
+  email VARCHAR(255) NULL,
+  roles VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
 );
 
 -- ---

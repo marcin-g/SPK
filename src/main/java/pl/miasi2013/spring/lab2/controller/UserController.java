@@ -20,7 +20,7 @@ public class UserController {
 				.getAuthentication();
 		String name = auth.getName(); // get logged in username
 		User user = new User();
-		user.setName(name);
+		//user.setName(name);
 		model.addAttribute("user", user);
 		return "profile";
 	}
