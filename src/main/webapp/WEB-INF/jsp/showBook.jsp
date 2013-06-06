@@ -19,6 +19,18 @@
 		<spring:url value="/books/edit/{bookId}" var="bookEditURL">
 			<spring:param name="bookId" value="${book.id}" />
 		</spring:url>
+		<spring:url value="/books/review/{bookId}" var="bookReviewURL">
+			<spring:param name="bookId" value="${book.id}" />
+		</spring:url>
+
+		<c:choose>
+			<c:when test="${book.state == 'AVAILABLE'}">
+				<c:set var="stat" value="Dostępna	" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="stat" value="----" />
+			</c:otherwise>
+		</c:choose>
 
 
 		<div class="${cssGroup}">
@@ -32,6 +44,19 @@
 			<c:out value="${book.publisher}" />
 			<br /> Rok wydania:
 			<c:out value="${book.year}" />
+			<br /> Recenzja:
+			<c:out value="${book.reviewURL}" />
+
+			<security:authorize access="hasRole('ROLE_SUPERUSER')">
+				<c:if test="${empty book.reviewURL}">
+					<form:form style="display:inline;" method="get" action="${bookReviewURL}">
+						<button type="submit">Wyślij recenzję</button>
+					</form:form>
+				</c:if>
+			</security:authorize>
+
+			<br /> Status:
+			<c:out value="${stat}" />
 		</div>
 		<div class="form-actions">
 			<security:authorize access="hasRole('ROLE_ADMIN')">
