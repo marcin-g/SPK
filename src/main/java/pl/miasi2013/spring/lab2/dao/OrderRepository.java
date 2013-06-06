@@ -94,5 +94,11 @@ public class OrderRepository implements OrderRepositoryInterface {
 		}
 		return orders.get(0);
 	}
+	@Override
+	public Collection<Order> getOrdersByUserId(long userId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {userId};
+		return jdbcTemplate.query("select * from OrderO where user_id = (?)", parameters, new OrderMapper());
+	}
 
 }
