@@ -13,8 +13,8 @@ public class UserMapper implements RowMapper<User> {
 	@Override
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Collection<String> roles = Arrays.asList(rs.getString("ROLES").split(","));
-		return new User(rs.getInt("ID"), rs.getString("USERNAME"), rs.getString("SURNAME"),
-				rs.getString("EMAIL"), roles, rs.getString("PASSWORD")) ;
+		return new User(rs.getInt("ID"), rs.getString("USERNAME"), rs.getString("FIRSTNAME"),
+				rs.getString("LASTNAME"), rs.getString("EMAIL"), roles, rs.getString("PASSWORD")) ;
 	}
 	
 }
