@@ -80,6 +80,18 @@ public class BookController {
 		bookService.updateBookReview(book);	
 		return "redirect:/books/{bookId}";	
 	}
+
+	@RequestMapping(value = "/borrow/{bookId}", method = RequestMethod.POST)
+	public String updateBookBorrow(@PathVariable("bookId") long bookId, Model model) {
+		bookService.updateBookBorrow(bookId);
+		return "redirect:/books/{bookId}";	
+	}
+	
+	@RequestMapping(value = "/queue/{bookId}", method = RequestMethod.POST)
+	public String updateBookQueue(@PathVariable("bookId") long bookId, Model model) {
+		bookService.updateBookQueue(bookId);
+		return "redirect:/books/{bookId}";	
+	}
 	
 	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.PUT)
 	public String updateBook(@ModelAttribute("book") Book book,BindingResult result) {

@@ -64,4 +64,7 @@ public class QueueService {
 		boolean valid=true;
 		return valid;
 	}
+	public Queue getQueueByUserIdAndBookId(long userId,long bookId){
+		return queueRepository.getQueueByUserIdAndBookId(userId, bookId);
+	}
 }
