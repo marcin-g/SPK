@@ -23,14 +23,32 @@
 			<spring:param name="bookId" value="${book.id}" />
 		</spring:url>
 
-		<c:choose>
-			<c:when test="${book.state == 'AVAILABLE'}">
-				<c:set var="stat" value="Dostępna	" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="stat" value="----" />
-			</c:otherwise>
-		</c:choose>
+			<c:choose>
+				<c:when test="${book.state == 'AVAILABLE'}">
+					<c:set var="stat" value="na półce" />
+				</c:when>
+				<c:when test="${book.state == 'REPORTED'}">
+					<c:set var="stat" value="realizacja zamówienia" />
+				</c:when>
+				<c:when test="${book.state == 'BORROWED'}">
+					<c:set var="stat" value="wypożyczona" />
+				</c:when>
+				<c:when test="${book.state == 'UNAVAILABLE'}">
+					<c:set var="stat" value="niedostępna" />
+				</c:when>
+				<c:when test="${book.state == 'AWAITING_RETURN'}">
+					<c:set var="stat" value="oczekiwanie na zwrot" />
+				</c:when>
+				<c:when test="${book.state == 'AWAITING_RECEPTION'}">
+					<c:set var="stat" value="oczekiwanie na odbiór" />
+				</c:when>
+				<c:when test="${book.state == 'REVIEWED'}">
+					<c:set var="stat" value="u recenzenta" />
+				</c:when>
+				<c:otherwise>
+					<c:set var="stat" value="----" />
+				</c:otherwise>
+			</c:choose>
 
 
 		<div class="${cssGroup}">
