@@ -108,7 +108,7 @@ public class BookService {
 			else{
 				Borrow borrow=borrowService.getBorrowByBookId(bookId);
 				User user=userService.getLoggedUser();
-				if(user.getId()==borrow.getUserId()){
+				if(borrow!=null && user.getId()==borrow.getUserId()){
 					return 1;
 				}
 				else{
