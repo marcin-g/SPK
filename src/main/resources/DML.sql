@@ -5,5 +5,8 @@ insert into UserU(username, firstname, lastname, email, roles, password) values(
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz', '12345', '1000', 'Adam Mickiewicz', 'AVAILABLE');
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Początek', '12346', '1100', 'Adam Mickiewicz', 'AVAILABLE');
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Powrót Gerwazego', '12345', '1900', 'Adam Mickiewicz', 'AVAILABLE');
+insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Przewrót Gerwazego', '12345', '1900', 'Adam Mickiewicz', 'AVAILABLE');
 
-insert into Borrow(book_id, user_id) values(1, 1);
+insert into Borrow(book_id, user_id, begin) values(1, 1, 1370558512);
+insert into Borrow(book_id, user_id, begin) values(2, 1, 1370558512);
+insert into Borrow(book_id, user_id, begin) values(4, 2, 1370558512);
