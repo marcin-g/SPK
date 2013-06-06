@@ -54,8 +54,8 @@
 			<spring:url value="/books/edit/{bookId}" var="bookEditURL">
 				<spring:param name="bookId" value="${book.id}" />
 			</spring:url>
-			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b></a> - <c:out
-				value="${book.author}" />
+			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b> - <c:out
+				value="${book.author}" /></a> [<c:out value="${stat }"/>]
 			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<form:form style="display:inline;" method="get" action="${bookEditURL}">
 					<button type="submit">Edytuj</button>
