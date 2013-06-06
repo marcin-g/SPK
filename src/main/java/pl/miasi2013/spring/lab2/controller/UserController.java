@@ -45,4 +45,26 @@ public class UserController {
 		// userService.updateQueue(queue);
 		return "redirect:/";
 	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getAllUsers(Model model) {
+		model.addAttribute("users", userService.getAllUsers());
+		return "usersList";
+	}
+	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String initCreationForm(Model model) {
+		model.addAttribute("user", new User());
+		return "createOrUpdateBookForm";
+	}
+
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	public String processAddBook(@ModelAttribute("user") User user,
+			BindingResult result) {
+		if (!UserService.isUserValid(user,result)) {
+			return "createOrUpdateUserForm";
+		}
+		userService.insertUser(user);
+		return "redirect:/users";
+	}
 }

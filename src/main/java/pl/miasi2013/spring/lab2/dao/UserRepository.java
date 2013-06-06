@@ -77,4 +77,21 @@ public class UserRepository implements UserRepositoryInterface {
 		return jdbcTemplate.query("select * from UserU where role like '%ROLE_ADMIN%'", new UserMapper());
 	}
 
+	@Override
+	public User getUserById(long userId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {userId};
+		List<User> users = jdbcTemplate.query("select * from UserU where id = (?)", parameters, new UserMapper());
+		if (users.isEmpty()) {
+			return null;
+		}
+		return users.get(0);
+	}
+
+	@Override
+	public Collection<User> getAllUsers() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		return jdbcTemplate.query("select * from UserU", new UserMapper());
+	}
+
 }

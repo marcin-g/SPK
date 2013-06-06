@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
 import pl.miasi2013.spring.lab2.dao.UserRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.User;
@@ -48,6 +49,22 @@ public class UserService {
 	
 	public Collection<User> getAdmins() {
 		return userRepository.getAdmins();
+	}
+
+
+	public Collection<User> getAllUsers() {
+		return userRepository.getAllUsers();
+	}
+
+
+	public void insertUser(User user) {
+		userRepository.insertUser(user);
+	}
+
+
+	public static boolean isUserValid(User user, BindingResult result) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }
