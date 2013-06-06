@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -68,6 +69,12 @@ public class UserRepository implements UserRepositoryInterface {
 			return null;
 		}
 		return users.get(0);
+	}
+
+	@Override
+	public Collection<User> getAdmins() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		return jdbcTemplate.query("select * from UserU where role like '%ROLE_ADMIN%'", new UserMapper());
 	}
 
 }

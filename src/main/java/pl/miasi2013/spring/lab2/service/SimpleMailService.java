@@ -1,14 +1,20 @@
 package pl.miasi2013.spring.lab2.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Service;
 
 import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.User;
 
 public class SimpleMailService{
+	
+	@Autowired
+	private UserService userService;
 
     private MailSender mailSender;
     private SimpleMailMessage templateMessage;
@@ -22,13 +28,7 @@ public class SimpleMailService{
         this.templateMessage = templateMessage;
     }
 
-    public void sendBookInfo(String text){
-
-        // Do the business calculations...
-
-        // Call the collaborators to persist the order...
-
-        // Create a thread safe "copy" of the template message and customize it
+    public void sendInfoTwoMonths(final Book book, final User user){
         Runnable sendMail=new Runnable() {
 			
 			@Override
@@ -36,10 +36,20 @@ public class SimpleMailService{
 				synchronized (lock) {
 					System.err.println("wysylam "+templateMessage.getFrom());   
 			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
-			        msg.setCc(new String[]{
-			        		"przemyslaw.grzeszczak@gmail.com", "bartosz.koninski@gmail.com","martinezz699@gmail.com"
-			        });
-			        msg.setText("Book ");
+			        msg.setSubject("Upłynął czas dla książki");
+			        List<String> mails = new ArrayList<String>();
+			        mails.add(user.getEmail());
+			        for (User admin : userService.getAdmins()) {
+			        	mails.add(admin.getEmail());
+			        }
+			        msg.setCc(mails.toArray(new String[mails.size()]));
+			        msg.setText(new StringBuilder()
+			           .append("Witaj " + user.getFirstname() + " " + user.getLastname() + ",\n")
+			           .append("Czas na oddanie książki " + book.getTitle() + " minął. Prosimy jak najszybciej odnieść książkę do biblioteki")
+			           .append("")
+			           .append("Pozdrawiamy")
+			           .toString()
+			        );
 			        try{
 			            mailSender.send(msg);
 			        }
