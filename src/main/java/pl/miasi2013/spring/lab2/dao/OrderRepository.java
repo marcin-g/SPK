@@ -34,7 +34,7 @@ public class OrderRepository implements OrderRepositoryInterface {
 
 	@Override
 	public int insertOrder(final Order order) {
-		simpleMailSender.sendBookInfo("elo");
+		//simpleMailSender.sendBookInfo("elo");
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(
