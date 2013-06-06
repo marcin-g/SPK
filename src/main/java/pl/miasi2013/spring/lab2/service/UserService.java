@@ -22,13 +22,6 @@ public class UserService {
 	PasswordEncoder passwordEncoder;
 	
 	@Transactional
-	public long addUser(User user) {
-		user.setPassword(passwordEncoder.encodePassword(user.getPassword(), null));
-		return userRepository.insertUser(user);
-	}
-	
-	
-	@Transactional
 	public User getUserByUsername(String username)
 			throws UsernameNotFoundException {
 		User user = userRepository.getUserByUsername(username);
@@ -62,6 +55,7 @@ public class UserService {
 
 	@Transactional
 	public void insertUser(User user) {
+		user.setPassword(passwordEncoder.encodePassword(user.getPassword(), ""));
 		userRepository.insertUser(user);
 	}
 
@@ -79,6 +73,7 @@ public class UserService {
 
 	@Transactional
 	public void updateUser(User user) {
+		user.setPassword(passwordEncoder.encodePassword(user.getPassword(), ""));
 		userRepository.updateUser(user);
 		
 	}
