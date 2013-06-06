@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.Book;
+import pl.miasi2013.spring.lab2.model.Book.BookState;
 import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.service.BookService;
 
@@ -44,6 +45,7 @@ public class BookController {
 		if (!BookService.isBookValid(book,result)) {
 			return "createOrUpdateBookForm";
 		}
+		book.setState(BookState.AVAILABLE);
 		bookService.insertBook(book);
 		return "redirect:/books";
 	}

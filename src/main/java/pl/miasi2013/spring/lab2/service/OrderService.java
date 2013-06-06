@@ -79,7 +79,7 @@ public class OrderService {
 		long bookId = bookService.insertBook(book);
 		order.setBookId(bookId);
 		this.insertOrder(order);
-		//simpleMailService.sendBookInfo("aa");
+		simpleMailService.sendBookInfo("aa");
 		
 	}
 	@Transactional
