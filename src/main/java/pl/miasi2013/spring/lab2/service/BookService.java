@@ -70,7 +70,7 @@ public class BookService {
 	@Transactional
 	public void updateBookReview(Book book) {
 		Book original=getBookById(book.getId());
-		original.setBookURL(book.getBookURL());
+		original.setReviewURL(book.getReviewURL());
 		updateBook(original);
 	}
 	public static boolean isBookValid(Book book, BindingResult result) {
