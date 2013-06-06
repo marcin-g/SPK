@@ -88,4 +88,15 @@ public class QueueRepository implements QueueRepositoryInterface {
 		List<Queue> queues = jdbcTemplate.query("select * from Queue where book_id = (?) and user_id = (?)", parameters, new QueueMapper());
 		return !queues.isEmpty();
 	}
+
+	@Override
+	public Queue getQueueByUserIdAndBookId(long userId, long bookId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {userId, bookId};
+		List<Queue> queues = jdbcTemplate.query("select * from Queue where user_id = (?) and book_id = (?)", parameters, new QueueMapper());
+		if (queues.isEmpty()) {
+			return null;
+		}
+		return queues.get(0);
+	}
 }

@@ -14,6 +14,7 @@ import pl.miasi2013.spring.lab2.model.Book.BookState;
 import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
 import pl.miasi2013.spring.lab2.model.relations.Order;
+import pl.miasi2013.spring.lab2.model.relations.Queue;
 import pl.miasi2013.spring.lab2.service.exceptions.BookNotFoundException;
 
 @Service
@@ -112,7 +113,7 @@ public class BookService {
 				return 0;
 			}
 			else{
-				Borrow borrow=borrowService.getBorrowByBookId(bookId);
+				Borrow borrow=borrowService.getActualBorrowByBook(bookId);
 				User user=userService.getLoggedUser();
 				if(borrow!=null && user.getId()==borrow.getUserId()){
 					return 1;
@@ -132,6 +133,31 @@ public class BookService {
 			returnValue=-1;
 		}
 		return returnValue;
+	}
+
+	public void updateBookBorrow(long bookId) {
+		Book book=getBookById(bookId);
+		if(book.getState()==BookState.BORROWED){
+			book.setState(BookState.AVAILABLE);
+		}
+		else{
+			book.setState(BookState.BORROWED);
+		}
+	}
+
+	public void updateBookQueue(long bookId) {
+		long userId=userService.getLoggedUser().getId();
+		if(queueService.isQueueByUser(bookId, userId)){
+			Queue queue=queueService.getQueueByUserIdAndBookId(userId,bookId);
+			queueService.deleteQueueById(queue.getId());
+		}
+		else{
+			Queue queue=new Queue();
+			queue.setBookId(bookId);
+			queue.setUserId(userService.getLoggedUser().getId());
+			queueService.insertQueue(queue);
+		}
+		
 	}
 
 }

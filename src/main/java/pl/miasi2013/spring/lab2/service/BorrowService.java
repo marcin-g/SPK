@@ -83,8 +83,8 @@ public class BorrowService {
 		return map;
 	}
 	
-	public Borrow getBorrowByBookId(long bookId){
-		return borrowRepository.getBorrowByBookId(bookId);
+	public Borrow getActualBorrowByBook(long bookId){
+		return borrowRepository.getActualBorrowByBook(bookId);
 	}
 
 

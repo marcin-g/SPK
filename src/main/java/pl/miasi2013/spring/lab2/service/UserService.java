@@ -1,5 +1,7 @@
 package pl.miasi2013.spring.lab2.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.Authentication;
@@ -7,8 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import pl.miasi2013.spring.lab2.dao.UserRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.User;
@@ -44,6 +44,10 @@ public class UserService {
 		User user=getUserByUsername(name);
 		
 		return user;
+	}
+	
+	public Collection<User> getAdmins() {
+		return userRepository.getAdmins();
 	}
 
 }
