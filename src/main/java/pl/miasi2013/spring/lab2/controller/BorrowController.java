@@ -76,6 +76,17 @@ public class BorrowController {
 		borrowService.deleteBorrowById(borrowId);
 		return "redirect:/borrows";		
 	}
-
+	
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+	public String getUserHistory(@PathVariable("userId") long borrowId, Model model) {
+		model.addAttribute("borrows", borrowService.getUserBorrows(borrowId));		
+		return "borrowsList";
+	}
+	
+	@RequestMapping(value = "/book/{bookId}", method = RequestMethod.GET)
+	public String getBookHistory(@PathVariable("bookId") long bookId, Model model) {
+		model.addAttribute("borrows", borrowService.getBorrowsByBookId(bookId));		
+		return "borrowsList";
+	}
 	
 }

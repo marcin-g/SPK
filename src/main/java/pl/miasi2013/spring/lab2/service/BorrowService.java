@@ -74,6 +74,14 @@ public class BorrowService {
 	public Collection<Borrow> getUserBorrows(User user) {
 		return borrowRepository.getUserBorrows(user.getId());
 	}
+
+	public Collection<Borrow> getBorrowsByBookId(long bookId) {
+		return borrowRepository.getBorrowsByBookId(bookId);
+	}
+	
+	public Collection<Borrow> getUserBorrows(long userId) {
+		return borrowRepository.getUserBorrows(userId);
+	}
 	public Map<Borrow,Book> getUserBorrowsWithBooks(User user) {
 		
 		HashMap<Borrow,Book> map=new HashMap<Borrow,Book>();
@@ -82,7 +90,7 @@ public class BorrowService {
 		}
 		return map;
 	}
-	
+
 	public Borrow getActualBorrowByBook(long bookId){
 		return borrowRepository.getActualBorrowByBook(bookId);
 	}
