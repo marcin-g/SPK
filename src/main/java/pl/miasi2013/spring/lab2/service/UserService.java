@@ -5,11 +5,13 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.dao.UserRepositoryInterface;
+import pl.miasi2013.spring.lab2.model.User;
 
+@Service
 public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepositoryInterface userRepository;
