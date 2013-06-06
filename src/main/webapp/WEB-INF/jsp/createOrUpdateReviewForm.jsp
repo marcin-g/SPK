@@ -25,7 +25,7 @@
 
 			</div>
 			<div class="form-actions">
-				<button type="submit">Edytuj recenzję</button>
+				<button type="submit">Zgłoś recenzję</button>
 			</div>
 		</form:form>
 		<jsp:include page="fragments/footer.jsp" />

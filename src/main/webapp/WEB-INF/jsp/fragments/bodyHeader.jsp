@@ -12,7 +12,7 @@
 				<li style="width: 100px;"><a href="<spring:url value="/login" htmlEscape="true" />"><i
 						class="icon-home"></i> Zaloguj</a></li>
 			</security:authorize>
-			<security:authorize access="hasRole('ROLE-SUPERUSER')">
+			<security:authorize access="hasRole('ROLE_SUPERUSER')">
 				<li style="width: 130px;"><a href="<spring:url value="/order.html" htmlEscape="true" />"><i
 						class="icon-th-list"></i> Zamówienia</a></li>
 				<li style="width: 170px;"><a
