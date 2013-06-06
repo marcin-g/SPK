@@ -84,6 +84,16 @@ public class OrderRepository implements OrderRepositoryInterface {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return jdbcTemplate.query("select * from OrderO o join Book b on b.id = o.book_id where b.state = 'REPORTED'", new OrderMapper());
 	}
+	@Override
+	public Order getOrderByBookId(long bookId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {bookId};
+		List<Order> orders = jdbcTemplate.query("select * from OrderO where book_id = (?)", parameters, new OrderMapper());
+		if (orders.isEmpty()) {
+			return null;
+		}
+		return orders.get(0);
+	}
 
 
 
