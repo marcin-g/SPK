@@ -24,9 +24,9 @@
 						class="icon-home"></i> Historia</a></li>
 				<li style="width: 100px;"><a href="<spring:url value="/profile" htmlEscape="true" />"><i
 						class="icon-home"></i> Profil</a></li>
-				<li style="width: 100px;"><a
+				<li style="width: 200px;"><a
 					href="<spring:url value="/j_spring_security_logout" htmlEscape="true" />"><i
-						class="icon-home"></i> Wyloguj</a></li>
+						class="icon-home"></i> Wyloguj [<security:authentication property="principal.username"/>]</a></li>
 			</security:authorize>
 		</ul>
 	</div>
