@@ -71,8 +71,8 @@ public class BorrowService {
 	}
 
 	public Collection<Borrow> getUserBorrows(User user) {
-		//return borrowRepository.getUserBorrows(user.getId());
-		return new ArrayList<Borrow>();
+		return borrowRepository.getUserBorrows(user.getId());
+		//return new ArrayList<Borrow>();
 	}
 	public Map<Borrow,Book> getUserBorrowsWithBooks(User user) {
 		

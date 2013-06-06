@@ -3,3 +3,5 @@ insert into UserU(username, surname, email, roles, password) values('admin', 'ad
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz', '12345', '1000', 'Adam Mickiewicz', 'AVAILABLE');
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Początek', '12346', '1100', 'Adam Mickiewicz', 'AVAILABLE');
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Powrót Gerwazego', '12345', '1900', 'Adam Mickiewicz', 'AVAILABLE');
+
+insert into Borrow(book_id, user_id) values(1, 1);
