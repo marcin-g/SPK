@@ -20,7 +20,7 @@
 						Zamów książkę</a></li>
 			</security:authorize>
 			<security:authorize access="isAuthenticated()">
-				<li style="width: 100px;"><a href="<spring:url value="/history" htmlEscape="true" />"><i
+				<li style="width: 100px;"><a href="<spring:url value="/borrow" htmlEscape="true" />"><i
 						class="icon-home"></i> Historia</a></li>
 				<li style="width: 100px;"><a href="<spring:url value="/profile" htmlEscape="true" />"><i
 						class="icon-home"></i> Profil</a></li>

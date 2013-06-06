@@ -1,6 +1,8 @@
 package pl.miasi2013.spring.lab2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,17 +13,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
 import pl.miasi2013.spring.lab2.service.BorrowService;
+import pl.miasi2013.spring.lab2.exceptions.UsernameNotFoundException;
+import pl.miasi2013.spring.lab2.service.UserService;
 
 @Controller
 @RequestMapping("/borrow")
 public class BorrowController {
 	@Autowired
 	private BorrowService borrowService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllBorrows(Model model) {
-		model.addAttribute("borrows", borrowService.getAllBorrows());
-		return "borrowsList";
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		String name = auth.getName();
+		try{
+			User user=userService.loadUserByUsername(name);
+			model.addAttribute("borrows", borrowService.getUserBorrowsWithBooks(user));
+			return "borrowsList";
+		}
+		catch(UsernameNotFoundException e){
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
