@@ -81,4 +81,11 @@ public class BorrowRepository implements BorrowRepositoryInterface {
 		return jdbcTemplate.query("select * from Borrow where user_id = (?)", parameters, new BorrowMapper());
 	}
 
+	@Override
+	public Collection<Borrow> getBorrowsByBookId(long bookId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {bookId};
+		return jdbcTemplate.query("select * from Borrow where book_id = (?)", parameters, new BorrowMapper());
+	}
+
 }
