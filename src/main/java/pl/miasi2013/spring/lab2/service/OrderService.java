@@ -82,6 +82,7 @@ public class OrderService {
 		simpleMailService.sendBookInfo("aa");
 		
 	}
+	
 	@Transactional
 	public void updateOrderWithBook(Order order,Book book){
 		order.setTime(System.currentTimeMillis());
