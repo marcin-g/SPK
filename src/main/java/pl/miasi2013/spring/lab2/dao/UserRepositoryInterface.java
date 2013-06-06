@@ -9,4 +9,6 @@ public interface UserRepositoryInterface {
 	public User getUserByUsername(String username);
 	public void updateUser(User user);
 	public Collection<User> getAdmins();
+	public User getUserById(long userId);
+	public Collection<User> getAllUsers();
 }
