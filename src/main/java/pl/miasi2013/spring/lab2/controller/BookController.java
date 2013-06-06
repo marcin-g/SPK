@@ -47,14 +47,21 @@ public class BookController {
 		bookService.insertBook(book);
 		return "redirect:/books";
 	}
-	
+
 	@RequestMapping(value = "/{bookId}", method = RequestMethod.GET)
+	public String initShowBook(@PathVariable("bookId") long bookId, Model model) {
+		model.addAttribute("book", bookService.getBookById(bookId));
+//		model.addAttribute("book", bookService.getBookById(bookId));
+		return "showBook";
+	}
+	
+	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.GET)
 	public String initEditBook(@PathVariable("bookId") long bookId, Model model) {
 		model.addAttribute("book", bookService.getBookById(bookId));		
 		return "createOrUpdateBookForm";
 	}
 	
-	@RequestMapping(value = "/{bookId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.PUT)
 	public String updateBook(@ModelAttribute("book") Book book,BindingResult result) {
 		if (!BookService.isBookValid(book,result)) {
 			return "createOrUpdateBookForm";
@@ -63,7 +70,7 @@ public class BookController {
 		return "redirect:/books";		
 	}
 	
-	@RequestMapping(value = "/{bookId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.DELETE)
 	public String deleteBook(@PathVariable("bookId") long bookId) {
 		bookService.deleteBookById(bookId);
 		return "redirect:/books";		
