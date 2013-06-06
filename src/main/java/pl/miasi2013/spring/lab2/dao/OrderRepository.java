@@ -94,14 +94,5 @@ public class OrderRepository implements OrderRepositoryInterface {
 		}
 		return orders.get(0);
 	}
-	@Override
-	public boolean isBookQueuedByUser(long bookId, long userId) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		Object[] parameters = {bookId, userId};
-		List<Order> orders = jdbcTemplate.query("select * from OrderO where book_id = (?) and user_id = (?)", parameters, new OrderMapper());
-		return !orders.isEmpty();
-	}
-
-
 
 }

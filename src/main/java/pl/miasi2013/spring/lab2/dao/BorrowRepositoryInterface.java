@@ -17,5 +17,7 @@ public interface BorrowRepositoryInterface {
 	Collection<Borrow> getAllBorrows();
 	
 	Collection<Borrow> getUserBorrows(long userId);
+	
+	Borrow getBorrowByBookId(long bookId);
 
 }

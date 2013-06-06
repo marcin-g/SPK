@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
+import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.model.relations.Queue;
 
 public class QueueRepository implements QueueRepositoryInterface {
@@ -80,4 +81,11 @@ public class QueueRepository implements QueueRepositoryInterface {
 		return jdbcTemplate.query("select * from Queue where book_id = (?)", parameters, new QueueMapper());
 	}
 
+	@Override
+	public boolean isBookQueuedByUser(long bookId, long userId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {bookId, userId};
+		List<Queue> queues = jdbcTemplate.query("select * from Queue where book_id = (?) and user_id = (?)", parameters, new QueueMapper());
+		return !queues.isEmpty();
+	}
 }
