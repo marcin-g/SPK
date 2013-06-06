@@ -53,6 +53,7 @@ public class BookController {
 	@RequestMapping(value = "/{bookId}", method = RequestMethod.GET)
 	public String initShowBook(@PathVariable("bookId") long bookId, Model model) {
 		model.addAttribute("book", bookService.getBookById(bookId));
+		model.addAttribute("status", bookService.getBookStatus(bookId));
 //		model.addAttribute("book", bookService.getBookById(bookId));
 		return "showBook";
 	}

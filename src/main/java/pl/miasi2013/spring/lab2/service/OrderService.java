@@ -92,6 +92,10 @@ public class OrderService {
 		this.updateOrder(order);
 	}
 	
+	public Order getOrderByBookId(long bookId){
+		return orderRepository.getOrderByBookId(bookId);
+	}
+	
 	public static  boolean isOrderValid(Order order, BindingResult result) {
 		boolean valid = true;
 		return valid;

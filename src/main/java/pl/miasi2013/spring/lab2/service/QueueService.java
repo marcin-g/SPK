@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import pl.miasi2013.spring.lab2.dao.QueueRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.relations.Queue;
 import pl.miasi2013.spring.lab2.service.exceptions.QueueNotFoundException;
@@ -50,6 +52,13 @@ public class QueueService {
 		return queueRepository.getAllQueues();
 	}
 	
+	public Collection<Queue> getQueuesByBookId(int bookId){
+		return queueRepository.getQueuesByBookId(bookId);
+	}
+	
+	public boolean isQueueByUser(long bookId,long userId){
+		return queueRepository.isBookQueuedByUser(bookId, userId);
+	}
 	
 	public static boolean isQueueValid(Queue queue, BindingResult result) {
 		boolean valid=true;
