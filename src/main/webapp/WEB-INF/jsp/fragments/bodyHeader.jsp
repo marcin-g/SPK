@@ -13,20 +13,29 @@
 						class="icon-home"></i> Zaloguj</a></li>
 			</security:authorize>
 			<security:authorize access="hasRole('ROLE_SUPERUSER')">
-				<li style="width: 130px;"><a href="<spring:url value="/order.html" htmlEscape="true" />"><i
-						class="icon-th-list"></i> Zamówienia</a></li>
 				<li style="width: 170px;"><a
 					href="<spring:url value="/order/new.html" htmlEscape="true" />"><i class="icon-plus-sign"></i>
 						Zamów książkę</a></li>
 			</security:authorize>
-			<security:authorize access="isAuthenticated()">
+
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<li style="width: 130px;"><a href="<spring:url value="/order.html" htmlEscape="true" />"><i
+						class="icon-th-list"></i> Zamówienia</a></li>
+				<li style="width: 150px;"><a href="<spring:url value="/books/new" htmlEscape="true" />"><i
+						class="icon-th-list"></i> Dodaj książkę</a></li>
+			</security:authorize>
+
+			<security:authorize access="isAuthenticated() && !hasRole('ROLE_ADMIN')">
 				<li style="width: 100px;"><a href="<spring:url value="/borrow" htmlEscape="true" />"><i
 						class="icon-home"></i> Historia</a></li>
+			</security:authorize>
+
+			<security:authorize access="isAuthenticated()">
 				<li style="width: 100px;"><a href="<spring:url value="/profile" htmlEscape="true" />"><i
 						class="icon-home"></i> Profil</a></li>
 				<li style="width: 200px;"><a
 					href="<spring:url value="/j_spring_security_logout" htmlEscape="true" />"><i
-						class="icon-home"></i> Wyloguj [<security:authentication property="principal.username"/>]</a></li>
+						class="icon-home"></i> Wyloguj [<security:authentication property="principal.username" />]</a></li>
 			</security:authorize>
 		</ul>
 	</div>
