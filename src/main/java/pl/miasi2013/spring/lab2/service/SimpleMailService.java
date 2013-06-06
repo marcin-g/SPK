@@ -36,9 +36,9 @@ public class SimpleMailService{
 				synchronized (lock) {
 					System.err.println("wysylam "+templateMessage.getFrom());   
 			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
-			        msg.setTo("przemyslaw.grzeszczak@gmail.com");
-			        msg.setTo("bartosz.koninski@gmail.com");
-			        msg.setTo("martinezz699@gmail.com");
+			        msg.setCc(new String[]{
+			        		"przemyslaw.grzeszczak@gmail.com", "bartosz.koninski@gmail.com","martinezz699@gmail.com"
+			        });
 			        msg.setText("Book ");
 			        try{
 			            mailSender.send(msg);
