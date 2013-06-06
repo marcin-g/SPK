@@ -25,6 +25,12 @@
 		<spring:url value="/books/reviewing/{bookId}" var="bookReviewingURL">
 			<spring:param name="bookId" value="${book.id}" />
 		</spring:url>
+		<spring:url value="/books/borrow/{bookId}" var="bookBorrowURL">
+			<spring:param name="bookId" value="${book.id}" />
+		</spring:url>
+		<spring:url value="/books/queue/{bookId}" var="bookQueueURL">
+			<spring:param name="bookId" value="${book.id}" />
+		</spring:url>
 
 		<c:choose>
 			<c:when test="${book.state == 'AVAILABLE'}">
@@ -53,6 +59,22 @@
 			</c:otherwise>
 		</c:choose>
 
+		<c:choose>
+			<c:when test="${status == '0'}">
+				<c:set var="message" value="Wypożycz" />
+			</c:when>
+			<c:when test="${status == '1'}">
+				<c:set var="message" value="Oddaj książkę" />
+			</c:when>
+			<c:when test="${status == '2'}">
+				<c:set var="message" value="Wypisz się z kolejki" />
+			</c:when>
+			<c:when test="${status == '3'}">
+				<c:set var="message" value="Dopisz się do kolejki" />
+			</c:when>
+		</c:choose>
+
+
 
 		<div class="${cssGroup}">
 			Tytuł:
@@ -78,7 +100,29 @@
 
 			<br /> Status:
 			<c:out value="${stat}" />
+
+			<c:choose>
+				<c:when test="${status == '0' || status == '1'}">
+					<form:form style="display:inline;" method="post" action="${bookBorrowURL}">
+						<button type="submit">
+							<c:out value="${message }" />
+						</button>
+					</form:form>
+				</c:when>
+				<c:when test="${status == '2' || status == '3'}">
+					<form:form style="display:inline;" method="post" action="${bookQueueURL}">
+						<button type="submit">
+							<c:out value="${message }" />
+						</button>
+					</form:form>
+				</c:when>
+			</c:choose>
+
+
+
 		</div>
+
+
 		<div class="form-actions">
 			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<c:if test="${book.state == 'AWAITING_RECEPTION' && empty book.reviewURL}">
