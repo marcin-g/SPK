@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,9 +14,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.relations.Borrow;
-import pl.miasi2013.spring.lab2.model.relations.Order;
 
 public class BorrowRepository implements BorrowRepositoryInterface {
 	private DataSource dataSource;

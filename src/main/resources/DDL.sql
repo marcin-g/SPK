@@ -1,5 +1,6 @@
 DROP TABLE OrderO IF EXISTS;
 DROP TABLE Borrow IF EXISTS;
+DROP TABLE Queue IF EXISTS;
 DROP TABLE Book IF EXISTS;
 DROP TABLE UserU IF EXISTS;
 		
@@ -51,6 +52,12 @@ CREATE TABLE Borrow (
   end BIGINT NULL
 );
 
+CREATE TABLE Queue (
+  id INT NOT NULL primary key IDENTITY,
+  book_id INT NOT NULL,
+  user_id INT NOT NULL
+);
+
 -- ---
 -- Foreign Keys 
 -- ---
@@ -60,3 +67,6 @@ ALTER TABLE OrderO ADD FOREIGN KEY (user_id) REFERENCES UserU (id);
 
 ALTER TABLE Borrow ADD FOREIGN KEY (book_id) REFERENCES Book (id);
 ALTER TABLE Borrow ADD FOREIGN KEY (user_id) REFERENCES UserU (id);
+
+ALTER TABLE Queue ADD FOREIGN KEY (book_id) REFERENCES Book (id);
+ALTER TABLE Queue ADD FOREIGN KEY (user_id) REFERENCES UserU (id);

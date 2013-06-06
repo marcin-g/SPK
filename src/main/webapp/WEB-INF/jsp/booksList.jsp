@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 
 
@@ -27,12 +28,15 @@
 			</spring:url>
 			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b></a> - <c:out
 				value="${book.author}" />
-
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<form:form style="display:inline;" method="get" action="${bookEditURL}">
+					<button type="submit">Edytuj</button>
+				</form:form>
+				<form:form style="display:inline;" method="delete" action="${bookEditURL}">
+					<button type="submit">Usuń</button>
+				</form:form>
+			</security:authorize>
 			<br />
-			[<a href="${bookEditURL}">edytuj</a>]
-			<form:form method="delete" action="${bookEditURL}">
-				<button type="submit">Usuń</button>
-			</form:form>
 		</c:forEach>
 		<jsp:include page="fragments/footer.jsp" />
 	</div>
