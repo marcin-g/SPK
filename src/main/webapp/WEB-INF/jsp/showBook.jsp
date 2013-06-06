@@ -22,6 +22,9 @@
 		<spring:url value="/books/review/{bookId}" var="bookReviewURL">
 			<spring:param name="bookId" value="${book.id}" />
 		</spring:url>
+		<spring:url value="/books/reviewing/{bookId}" var="bookReviewingURL">
+			<spring:param name="bookId" value="${book.id}" />
+		</spring:url>
 
 		<c:choose>
 			<c:when test="${book.state == 'AVAILABLE'}">
@@ -79,7 +82,7 @@
 		<div class="form-actions">
 			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<c:if test="${book.state == 'AWAITING_RECEPTION' && empty book.reviewURL}">
-					<form:form style="display:inline;" method="get" action="${bookEditURL}">
+					<form:form style="display:inline;" method="post" action="${bookReviewingURL}">
 						<button type="submit">Odebrana przez Recenzenta</button>
 					</form:form>
 				</c:if>
