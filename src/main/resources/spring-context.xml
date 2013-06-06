@@ -24,7 +24,30 @@
 		<property name="username" value="SA" />
 	</bean>
 
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  <property name="host" value="smtp.gmail.com" />
+	<property name="port" value="587" />
+	<property name="username" value="username" />
+	<property name="password" value="password" />
+ 
+	<property name="javaMailProperties">
+	   <props>
+       	      <prop key="mail.smtp.auth">true</prop>
+       	      <prop key="mail.smtp.starttls.enable">true</prop>
+       	   </props>
+	</property>
+</bean>
 
+<!-- this is a template message that we can pre-load with default state -->
+<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+  <property name="from" value="customerservice@mycompany.com"/>
+  <property name="subject" value="Your order"/>
+</bean>
+
+<bean id="simpleMailSender" class="pl.miasi2013.spring.lab2.utils.SimpleMailSender">
+  <property name="mailSender" ref="mailSender"/>
+  <property name="templateMessage" ref="templateMessage"/>
+</bean>
 
 	<jdbc:initialize-database data-source="dataSource"
 		ignore-failures="ALL">
