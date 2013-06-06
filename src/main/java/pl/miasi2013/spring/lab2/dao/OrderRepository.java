@@ -16,20 +16,25 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import pl.miasi2013.spring.lab2.model.relations.Order;
+import pl.miasi2013.spring.lab2.utils.SimpleMailSender;
 
 public class OrderRepository implements OrderRepositoryInterface {
 	
 	private DataSource dataSource;
+	private SimpleMailSender simpleMailSender;
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-
+	public void setSimpleMailSender(SimpleMailSender simpleMailSender) {
+		this.simpleMailSender = simpleMailSender;
+	}
 	public OrderRepository() {
 	}
 
 	@Override
 	public int insertOrder(final Order order) {
+		simpleMailSender.sendBookInfo("elo");
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(
@@ -84,5 +89,7 @@ public class OrderRepository implements OrderRepositoryInterface {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return jdbcTemplate.query("select * from OrderO o join Book b on b.id = o.book_id where b.state = 'REPORTED'", new OrderMapper());
 	}
+
+
 
 }
