@@ -28,6 +28,7 @@
   <property name="host" value="poczta.o2.pl" />
 	<property name="username" value="miasi2013@o2.pl" />
 	<property name="password" value="mailnamiasi" />
+	<property name="port" value="465"></property>
  
 	<property name="javaMailProperties">
 	   <props>
