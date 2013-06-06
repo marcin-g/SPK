@@ -23,19 +23,16 @@
 
 
 
-			<spring:url value="/books/{bookId}" var="bookURL">
-				<spring:param name="bookId" value="${book.id}" />
-			</spring:url>
-			<spring:url value="/books/edit/{bookId}" var="bookEditURL">
-				<spring:param name="bookId" value="${book.id}" />
+			<spring:url value="/users/edit/{userId}" var="userEditURL">
+				<spring:param name="userId" value="${user.id}" />
 			</spring:url>
 
-			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b> -
-				<c:out value="${book.author}" /></a> [<c:out value="${stat }" />]
-				<form:form style="display:inline;" method="get" action="${bookEditURL}">
+			<c:out value="${user.id}" />. <b><c:out value="${user.username}" /> (<c:out
+					value="${user.firstname}" /> <c:out value="${user.lastname}" />)</b>
+			<form:form style="display:inline;" method="get" action="${userEditURL}">
 				<button type="submit">Edytuj</button>
 			</form:form>
-			<form:form style="display:inline;" method="delete" action="${bookEditURL}">
+			<form:form style="display:inline;" method="delete" action="${userEditURL}">
 				<button type="submit">Usuń</button>
 			</form:form>
 			<br />
