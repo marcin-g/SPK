@@ -27,7 +27,7 @@ public class BookController {
 		return "booksList";
 	}
 
-	@RequestMapping(value = "/reviewing/{orderId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/reviewing/{bookId}", method = RequestMethod.POST)
 	public String confirmReviewing(@PathVariable("bookId") long bookId) {
 		bookService.setBookState(bookId, BookState.AWAITING_RECEPTION);
 		return "redirect:/books";
