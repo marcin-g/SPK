@@ -63,8 +63,18 @@ public class UserService {
 
 
 	public static boolean isUserValid(User user, BindingResult result) {
-		// TODO Auto-generated method stub
 		return true;
+	}
+
+
+	public User getUserById(long userId) {
+		return userRepository.getUserById(userId);
+	}
+
+
+	public void updateUser(User user) {
+		userRepository.updateUser(user);
+		
 	}
 
 }
