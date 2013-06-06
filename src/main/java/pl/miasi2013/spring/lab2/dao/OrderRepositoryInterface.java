@@ -12,4 +12,5 @@ public interface OrderRepositoryInterface {
 	public Collection<Order> getAllOrders();
 	public Collection<Order> getAllReportedOrders();
 	public Order getOrderByBookId(long bookId);
+	public boolean isBookQueuedByUser(long bookId, long userId);
 }
