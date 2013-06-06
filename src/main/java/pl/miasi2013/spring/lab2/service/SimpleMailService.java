@@ -45,7 +45,7 @@ public class SimpleMailService{
 			        msg.setCc(mails.toArray(new String[mails.size()]));
 			        msg.setText(new StringBuilder()
 			           .append("Witaj " + user.getFirstname() + " " + user.getLastname() + ",\n")
-			           .append("Czas na oddanie książki " + book.getTitle() + " minął. Prosimy jak najszybciej odnieść książkę do biblioteki")
+			           .append("Czas na oddanie książki " + book.getTitle() + " minął. Książka zostaje zwrócona do biblioteki do biblioteki")
 			           .append("")
 			           .append("Pozdrawiamy")
 			           .toString()
@@ -84,6 +84,77 @@ public class SimpleMailService{
 			        msg.setText(new StringBuilder()
 			           .append("Zamówiona książka:")
 			           .append(book.getTitle() + ", " + book.getAuthor() + ", " + book.getPublisher() + ", " + book.getYear())
+			           .toString()
+			        );
+			        try{
+			            mailSender.send(msg);
+			        }
+			        catch(MailException ex) {
+			            // simply log it and go on...
+			            System.err.println(ex.getMessage());            
+			        }
+				}
+			}
+		};
+		
+		Thread watek=new Thread(sendMail);
+		watek.start();
+    	
+    }
+    
+    public void sendBookBorowed(final Book book, final User whoHas, final User whoWantToBorrow){
+        Runnable sendMail=new Runnable() {
+			
+			@Override
+			public void run() {
+				synchronized (lock) {
+					System.err.println("wysylam "+templateMessage.getFrom());   
+			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+			        msg.setSubject("Wypożyczenie książki");
+			        msg.setTo(whoWantToBorrow.getEmail());
+			        List<String> mails = new ArrayList<String>();
+			        mails.add(whoHas.getEmail());
+			        for (User admin : userService.getAdmins()) {
+			        	mails.add(admin.getEmail());
+			        }
+			        msg.setCc(mails.toArray(new String[mails.size()]));
+			        msg.setText(new StringBuilder()
+			           .append("Użytkownik " + whoWantToBorrow.getFirstname() + " " + whoWantToBorrow.getLastname() + " wypożyczy książkę " + book.getTitle() + ", którą aktualnie posiada" + whoHas.getFirstname() + " " + whoHas.getLastname() + "." )
+			           .append("")
+			           .append("Pozdrawiamy")
+			           .toString()
+			        );
+			        try{
+			            mailSender.send(msg);
+			        }
+			        catch(MailException ex) {
+			            // simply log it and go on...
+			            System.err.println(ex.getMessage());            
+			        }
+				}
+			}
+		};
+		
+		Thread watek=new Thread(sendMail);
+		watek.start();
+    	
+    }
+    
+    public void sendBookReturned(final Book book, final User whoWantToBorrow){
+        Runnable sendMail=new Runnable() {
+			
+			@Override
+			public void run() {
+				synchronized (lock) {
+					System.err.println("wysylam "+templateMessage.getFrom());   
+			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+			        msg.setSubject("Książka dostępna");
+			        msg.setTo(whoWantToBorrow.getEmail());
+			        msg.setText(new StringBuilder()
+			           .append("Witaj " + whoWantToBorrow.getFirstname() + " " + whoWantToBorrow.getLastname() + ",\n")
+			           .append("Książka " + book.getTitle() + " została zwrócona do biblioteki i jest dostępna do odbioru")
+			           .append("")
+			           .append("Pozdrawiamy")
 			           .toString()
 			        );
 			        try{
