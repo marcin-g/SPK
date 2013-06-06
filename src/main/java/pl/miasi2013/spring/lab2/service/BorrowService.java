@@ -29,6 +29,7 @@ public class BorrowService {
 		borrowRepository.insertBorrow(borrow);
 	}
 
+	@Transactional
 	public Borrow getBorrowById(long borrowId) {
 		Borrow borrow=borrowRepository.getBorrowById(borrowId);
 		if(borrow==null){
@@ -54,6 +55,7 @@ public class BorrowService {
 		
 	}
 
+	@Transactional
 	public Collection<Borrow> getAllBorrows() {
 		return borrowRepository.getAllBorrows();
 	}
@@ -62,7 +64,8 @@ public class BorrowService {
 		boolean valid=true;
 		return valid;
 	}
-	
+
+	@Transactional
 	public Map<Borrow,Book> getBorrowsWithBooks(Collection<Borrow> borrows) {
 		HashMap<Borrow,Book> map=new HashMap<Borrow,Book>();
 		for(Borrow borrow:borrows){
@@ -71,9 +74,21 @@ public class BorrowService {
 		return map;
 	}
 
+	@Transactional
 	public Collection<Borrow> getUserBorrows(User user) {
 		return borrowRepository.getUserBorrows(user.getId());
 	}
+
+	@Transactional
+	public Collection<Borrow> getBorrowsByBookId(long bookId) {
+		return borrowRepository.getBorrowsByBookId(bookId);
+	}
+
+	@Transactional
+	public Collection<Borrow> getUserBorrows(long userId) {
+		return borrowRepository.getUserBorrows(userId);
+	}
+	@Transactional
 	public Map<Borrow,Book> getUserBorrowsWithBooks(User user) {
 		
 		HashMap<Borrow,Book> map=new HashMap<Borrow,Book>();
@@ -82,7 +97,8 @@ public class BorrowService {
 		}
 		return map;
 	}
-	
+
+	@Transactional
 	public Borrow getActualBorrowByBook(long bookId){
 		return borrowRepository.getActualBorrowByBook(bookId);
 	}

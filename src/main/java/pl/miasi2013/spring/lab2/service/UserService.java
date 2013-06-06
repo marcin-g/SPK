@@ -37,7 +37,8 @@ public class UserService {
 		}
 		return user;
 	}
-	
+
+	@Transactional
 	public User getLoggedUser(){
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -46,17 +47,20 @@ public class UserService {
 		
 		return user;
 	}
-	
+
+	@Transactional
 	public Collection<User> getAdmins() {
 		return userRepository.getAdmins();
 	}
 
 
+	@Transactional
 	public Collection<User> getAllUsers() {
 		return userRepository.getAllUsers();
 	}
 
 
+	@Transactional
 	public void insertUser(User user) {
 		userRepository.insertUser(user);
 	}
@@ -67,11 +71,13 @@ public class UserService {
 	}
 
 
+	@Transactional
 	public User getUserById(long userId) {
 		return userRepository.getUserById(userId);
 	}
 
 
+	@Transactional
 	public void updateUser(User user) {
 		userRepository.updateUser(user);
 		

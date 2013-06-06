@@ -48,14 +48,17 @@ public class QueueService {
 		
 	}
 
+	@Transactional
 	public Collection<Queue> getAllQueues() {
 		return queueRepository.getAllQueues();
 	}
-	
+
+	@Transactional
 	public Collection<Queue> getQueuesByBookId(int bookId){
 		return queueRepository.getQueuesByBookId(bookId);
 	}
-	
+
+	@Transactional
 	public boolean isQueueByUser(long bookId,long userId){
 		return queueRepository.isBookQueuedByUser(bookId, userId);
 	}
@@ -64,6 +67,8 @@ public class QueueService {
 		boolean valid=true;
 		return valid;
 	}
+
+	@Transactional
 	public Queue getQueueByUserIdAndBookId(long userId,long bookId){
 		return queueRepository.getQueueByUserIdAndBookId(userId, bookId);
 	}

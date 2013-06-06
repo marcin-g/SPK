@@ -105,6 +105,7 @@ public class BookService {
 		return valid;
 	}
 
+	@Transactional
 	public int getBookStatus(long bookId) {
 		int returnValue=-1;
 		try{
@@ -135,6 +136,7 @@ public class BookService {
 		return returnValue;
 	}
 
+	@Transactional
 	public void updateBookBorrow(long bookId) {
 		Book book=getBookById(bookId);
 		if(book.getState()==BookState.BORROWED){
@@ -145,6 +147,7 @@ public class BookService {
 		}
 	}
 
+	@Transactional
 	public void updateBookQueue(long bookId) {
 		long userId=userService.getLoggedUser().getId();
 		if(queueService.isQueueByUser(bookId, userId)){
