@@ -62,6 +62,7 @@ public class OrderController {
 		bookService.setBookStateByOrder(orderId, BookState.AWAITING_RECEPTION);
 		return "redirect:/order";
 	}
+	
 
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
 	public String initEditOrder(@PathVariable("orderId") long orderId,
