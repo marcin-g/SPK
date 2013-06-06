@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.Book.BookState;
+import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Order;
 import pl.miasi2013.spring.lab2.service.BookService;
 import pl.miasi2013.spring.lab2.service.OrderService;
+import pl.miasi2013.spring.lab2.service.UserService;
 
 @Controller
 @RequestMapping("/order")
@@ -22,10 +24,21 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllOrders(Model model) {
-		model.addAttribute("orders", orderService.getOrdersWithBooks(orderService.getReportedOrders()));
+		User user = userService.getLoggedUser();
+		if (user.hasRole("ROLE_ADMIN")) {
+			model.addAttribute("orders", orderService
+					.getOrdersWithBooks(orderService.getReportedOrders()));
+		} else {
+			model.addAttribute("orders", orderService
+					.getOrdersWithBooks(orderService.getAllOrdersByUserId(user
+							.getId())));
+
+		}
 		return "ordersList";
 	}
 
@@ -39,10 +52,11 @@ public class OrderController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String processAddOrder(@ModelAttribute("order") Order order,
 			@ModelAttribute("book") Book book, BindingResult result) {
-		
-		orderService.createOrderNewBook(order,book);
+
+		orderService.createOrderNewBook(order, book);
 		return "redirect:/order";
 	}
+
 	@RequestMapping(value = "/confirm/{orderId}", method = RequestMethod.POST)
 	public String confirmOrder(@PathVariable("orderId") long orderId) {
 		bookService.setBookStateByOrder(orderId, BookState.REVIEWED);
@@ -52,7 +66,7 @@ public class OrderController {
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
 	public String initEditOrder(@PathVariable("orderId") long orderId,
 			Model model) {
-		Order order=orderService.getOrderById(orderId);
+		Order order = orderService.getOrderById(orderId);
 		model.addAttribute("order", order);
 		model.addAttribute("book", bookService.getBookById(order.getBookId()));
 		return "createOrUpdateOrderForm";
@@ -61,8 +75,8 @@ public class OrderController {
 	@RequestMapping(value = "/{orderId}", method = RequestMethod.PUT)
 	public String updateOrder(@ModelAttribute("order") Order order,
 			@ModelAttribute("book") Book book, BindingResult result) {
-		
-		orderService.updateOrderWithBook(order,book);
+
+		orderService.updateOrderWithBook(order, book);
 		return "redirect:/order";
 	}
 
@@ -72,5 +86,4 @@ public class OrderController {
 		return "redirect:/orders";
 	}
 
-	
 }
