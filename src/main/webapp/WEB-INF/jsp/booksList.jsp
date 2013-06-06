@@ -54,14 +54,21 @@
 			<spring:url value="/books/edit/{bookId}" var="bookEditURL">
 				<spring:param name="bookId" value="${book.id}" />
 			</spring:url>
-			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b> - <c:out
-				value="${book.author}" /></a> [<c:out value="${stat }"/>]
+			<spring:url value="/borrow/book/{bookId}" var="bookHistoryURL">
+				<spring:param name="bookId" value="${book.id}" />
+			</spring:url>
+
+			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b> -
+				<c:out value="${book.author}" /></a> [<c:out value="${stat }" />]
 			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<form:form style="display:inline;" method="get" action="${bookEditURL}">
 					<button type="submit">Edytuj</button>
 				</form:form>
 				<form:form style="display:inline;" method="delete" action="${bookEditURL}">
 					<button type="submit">Usuń</button>
+				</form:form>
+				<form:form style="display:inline;" method="delete" action="${bookHistoryURL}">
+					<button type="submit">Historia</button>
 				</form:form>
 			</security:authorize>
 			<br />
