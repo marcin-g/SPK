@@ -62,6 +62,17 @@ public class BookController {
 		model.addAttribute("book", bookService.getBookById(bookId));		
 		return "createOrUpdateBookForm";
 	}
+
+	@RequestMapping(value = "/review/{bookId}", method = RequestMethod.GET)
+	public String initEditBookReview(@PathVariable("bookId") long bookId, Model model) {
+		model.addAttribute("book", bookService.getBookById(bookId));	
+		return "createOrUpdateBookForm";
+	}
+	@RequestMapping(value = "/review/{bookId}", method = RequestMethod.POST)
+	public String updateBookReview(@ModelAttribute("book") Book book, Model model) {
+		bookService.updateBook(book);	
+		return "createOrUpdateBookForm";
+	}
 	
 	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.PUT)
 	public String updateBook(@ModelAttribute("book") Book book,BindingResult result) {
