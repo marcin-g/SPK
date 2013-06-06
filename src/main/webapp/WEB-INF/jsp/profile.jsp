@@ -18,13 +18,13 @@
 				<label class="control-label">Imię</label>
 				<div class="controls">
 					<form:hidden path="id" />
-					<form:input path="username" />
-					<span class="help-inline"><form:errors path="username" cssClass="control-group error" /></span>
+					<form:input path="firstname" />
+					<span class="help-inline"><form:errors path="firstname" cssClass="control-group error" /></span>
 				</div>
 				<label class="control-label">Nazwisko</label>
 				<div class="controls">
-					<form:input path="surname" />
-					<span class="help-inline"><form:errors path="surname" cssClass="control-group error" /></span>
+					<form:input path="lastname" />
+					<span class="help-inline"><form:errors path="lastname" cssClass="control-group error" /></span>
 				</div>
 				<label class="control-label">E-mail</label>
 				<div class="controls">
