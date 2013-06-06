@@ -18,11 +18,11 @@
 
 		<h2>Historia wypożyczeń</h2>
 
-		<c:forEach var="borrows" items="${borrows}">
-			<c:out value="${borrow.id}" />. <b><c:out value="${borrow.bookId}" /></b> - <c:out
-				value="${book.author}" />
+		<c:forEach var="borrow" items="${borrows}">
+			<c:out value="${borrow.key.id}" />. <b><c:out value="${borrow.key.bookId}" /></b> - <c:out
+				value="${borrow.value.title}" />
 			<spring:url value="/books/{bookId}" var="bookURL">
-				<spring:param name="bookId" value="${borrow.bookId}" />
+				<spring:param name="bookId" value="${borrow.key.bookId}" />
 			</spring:url>
 			<br />
 		</c:forEach>

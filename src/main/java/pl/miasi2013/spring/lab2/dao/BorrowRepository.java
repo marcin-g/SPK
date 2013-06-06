@@ -45,9 +45,13 @@ public class BorrowRepository implements BorrowRepositoryInterface {
 		Collection<Borrow> borrowList=new ArrayList<Borrow>();
 		Borrow borrow;
 		borrow=new Borrow();
-		borrowList.add(borrow);
 		borrow.setId(1);
 		borrow.setBookId(1);
+		borrowList.add(borrow);
+		borrow=new Borrow();
+		borrow.setId(2);
+		borrow.setBookId(3);
+		borrowList.add(borrow);
 		return borrowList;
 	}
 
