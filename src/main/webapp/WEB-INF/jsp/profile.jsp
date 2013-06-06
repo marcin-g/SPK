@@ -4,31 +4,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="mytags" tagdir="/WEB-INF/tags"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 
-
-<html lang="en">
+<html lang="pl">
 
 <jsp:include page="fragments/headTag.jsp" />
 <body>
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
 
-		<form:form modelAttribute="user" method="${post}" class="form-horizontal">
+		<form:form modelAttribute="user" method="post" class="form-horizontal">
 			<div class="${cssGroup}">
 				<label class="control-label">Imię</label>
 				<div class="controls">
 					<form:hidden path="id" />
-					<form:input path="title" />
+					<form:input path="name" />
 					<span class="help-inline"><form:errors path="name" cssClass="control-group error" /></span>
 				</div>
 				<label class="control-label">Nazwisko</label>
 				<div class="controls">
-					<form:input path="ISBN" />
+					<form:input path="surname" />
 					<span class="help-inline"><form:errors path="surname" cssClass="control-group error" /></span>
 				</div>
 				<label class="control-label">E-mail</label>
 				<div class="controls">
-					<form:input path="ISBN" />
+					<form:input path="email" />
 					<span class="help-inline"><form:errors path="email" cssClass="control-group error" /></span>
 				</div>
 			</div>

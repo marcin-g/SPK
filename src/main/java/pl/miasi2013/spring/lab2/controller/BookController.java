@@ -3,7 +3,6 @@ package pl.miasi2013.spring.lab2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.Book;
+import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.service.BookService;
 
 @Controller
@@ -23,7 +23,12 @@ public class BookController {
 	public String getAllBooks(Model model) {
 		model.addAttribute("books", bookService.getAllVisibleBooks());
 		return "booksList";
-//		return "login";
+	}
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String initProfileForm(Model model) {
+		model.addAttribute("user", new User());
+		return "profile";
 	}
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
