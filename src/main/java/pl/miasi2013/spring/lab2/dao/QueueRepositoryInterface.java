@@ -6,7 +6,7 @@ import pl.miasi2013.spring.lab2.model.relations.Queue;
 
 public interface QueueRepositoryInterface {
 
-	void insertQueue(Queue queue);
+	int insertQueue(Queue queue);
 
 	Queue getQueueById(long queueId);
 
@@ -15,6 +15,8 @@ public interface QueueRepositoryInterface {
 	void deleteQueue(Queue queue);
 
 	Collection<Queue> getAllQueues();
+	
+	Collection<Queue> getQueuesByBookId(long bookId);
 
 }
 

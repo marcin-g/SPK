@@ -28,14 +28,17 @@
   <property name="host" value="poczta.o2.pl" />
 	<property name="username" value="miasi2013@o2.pl" />
 	<property name="password" value="mailnamiasi" />
-	<property name="port" value="465"></property>
- 
+	<property name="port" value="587"></property>
+	<property name="protocol" value="smtp"></property>
 	<property name="javaMailProperties">
 	   <props>
        	      <prop key="mail.smtp.auth">true</prop>
+       	      <prop key="mail.smtp.host">poczta.o2.pl</prop>
        	      <prop key="mail.smtp.starttls.enable">true</prop>
-       	      <prop key="mail.smtp.port">465</prop>
+       	      <prop key="mail.smtp.port">587</prop>
        	      <prop key="mail.smtp.timeout">10000</prop>
+       	      <prop key="mail.smtp.quitwait">false</prop>
+                <prop key="mail.debug">true</prop>
        	   </props>
 	</property>
 </bean>

@@ -12,6 +12,7 @@ public class SimpleMailService{
 
     private MailSender mailSender;
     private SimpleMailMessage templateMessage;
+    private Object lock=new Object();
 
     public void setMailSender(MailSender mailSender) {
         this.mailSender = mailSender;
@@ -28,16 +29,30 @@ public class SimpleMailService{
         // Call the collaborators to persist the order...
 
         // Create a thread safe "copy" of the template message and customize it
-        System.err.println("wysylam "+templateMessage.getFrom());   
-        SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
-        msg.setTo("martinezz699@gmail.com");
-        msg.setText("Book ");
-        try{
-            this.mailSender.send(msg);
-        }
-        catch(MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());            
-        }
+        Runnable sendMail=new Runnable() {
+			
+			@Override
+			public void run() {
+				synchronized (lock) {
+					System.err.println("wysylam "+templateMessage.getFrom());   
+			        SimpleMailMessage msg = new SimpleMailMessage(templateMessage);
+			        msg.setCc(new String[]{
+			        		"przemyslaw.grzeszczak@gmail.com", "bartosz.koninski@gmail.com","martinezz699@gmail.com"
+			        });
+			        msg.setText("Book ");
+			        try{
+			            mailSender.send(msg);
+			        }
+			        catch(MailException ex) {
+			            // simply log it and go on...
+			            System.err.println(ex.getMessage());            
+			        }
+				}
+			}
+		};
+		
+		Thread watek=new Thread(sendMail);
+		watek.start();
+    	
     }
 }
