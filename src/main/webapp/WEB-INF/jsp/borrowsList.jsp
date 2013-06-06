@@ -17,13 +17,11 @@
 		<jsp:include page="fragments/bodyHeader.jsp" />
 
 		<h2>Historia wypożyczeń</h2>
-
+		<spring:url value="/books/{bookId}" var="bookURL">
+			<spring:param name="bookId" value="${borrow.key.bookId}" />
+		</spring:url>
 		<c:forEach var="borrow" items="${borrows}">
-			<c:out value="${borrow.key.id}" />. <b><c:out value="${borrow.key.bookId}" /></b> - <c:out
-				value="${borrow.value.title}" />
-			<spring:url value="/books/{bookId}" var="bookURL">
-				<spring:param name="bookId" value="${borrow.key.bookId}" />
-			</spring:url>
+			<c:out value="${borrow.key.id}" />. <a href="${bookURL}"> <c:out value="${borrow.value.title}" /> </a>
 			<br />
 		</c:forEach>
 		<jsp:include page="fragments/footer.jsp" />

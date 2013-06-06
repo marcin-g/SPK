@@ -1,6 +1,5 @@
 package pl.miasi2013.spring.lab2.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

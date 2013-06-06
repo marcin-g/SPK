@@ -18,8 +18,8 @@
 				<label class="control-label">Imię</label>
 				<div class="controls">
 					<form:hidden path="id" />
-					<form:input path="name" />
-					<span class="help-inline"><form:errors path="name" cssClass="control-group error" /></span>
+					<form:input path="username" />
+					<span class="help-inline"><form:errors path="username" cssClass="control-group error" /></span>
 				</div>
 				<label class="control-label">Nazwisko</label>
 				<div class="controls">
