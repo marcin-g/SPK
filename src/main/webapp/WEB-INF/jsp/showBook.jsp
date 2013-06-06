@@ -37,7 +37,7 @@
 			<c:out value="${book.year}" />
 		</div>
 		<div class="form-actions">
-			<security:authorize access="hasRole('ROLE-SUPERUSER')">
+			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<button type="submit">Edytuj książkę</button>
 			</security:authorize>
 		</div>
