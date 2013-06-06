@@ -67,7 +67,7 @@
 				<form:form style="display:inline;" method="delete" action="${bookEditURL}">
 					<button type="submit">Usuń</button>
 				</form:form>
-				<form:form style="display:inline;" method="delete" action="${bookHistoryURL}">
+				<form:form style="display:inline;" method="get" action="${bookHistoryURL}">
 					<button type="submit">Historia</button>
 				</form:form>
 			</security:authorize>
