@@ -26,12 +26,12 @@ public class BorrowController {
 	private UserService userService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getAllBorrows(Model model) {
+	public String getAllUserBorrows(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String name = auth.getName();
 		try{
-			User user=userService.loadUserByUsername(name);
+			User user=userService.getUserByUsername(name);
 			model.addAttribute("borrows", borrowService.getUserBorrowsWithBooks(user));
 			return "borrowsList";
 		}
