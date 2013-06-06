@@ -27,11 +27,8 @@ public class BorrowController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllUserBorrows(Model model) {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String name = auth.getName();
 		try{
-			User user=userService.getUserByUsername(name);
+			User user=userService.getLoggedUser();
 			model.addAttribute("borrows", borrowService.getUserBorrowsWithBooks(user));
 			return "borrowsList";
 		}
@@ -78,8 +75,8 @@ public class BorrowController {
 	}
 	
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-	public String getUserHistory(@PathVariable("userId") long borrowId, Model model) {
-		model.addAttribute("borrows", borrowService.getUserBorrows(borrowId));		
+	public String getUserHistory(@PathVariable("userId") long userId, Model model) {
+		model.addAttribute("borrows", borrowService.getUserBorrows(userId));		
 		return "borrowsList";
 	}
 	

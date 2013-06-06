@@ -30,6 +30,7 @@ public class OrderService {
 		orderRepository.insertOrder(order);
 	}
 
+	@Transactional
 	public Order getOrderById(long orderId) {
 		Order order=orderRepository.getOrderById(orderId);
 		if(order==null){
@@ -54,14 +55,17 @@ public class OrderService {
 		}
 	}
 
+	@Transactional
 	public Collection<Order> getAllOrders() {
 		return orderRepository.getAllOrders();
 	}
-	
+
+	@Transactional
 	public Collection<Order> getReportedOrders() {
 		return orderRepository.getAllReportedOrders();
 	}
-	
+
+	@Transactional
 	public Map<Order,Book> getOrdersWithBooks(Collection<Order> orders) {
 		HashMap<Order,Book> map=new HashMap<Order,Book>();
 		for(Order order:orders){
@@ -90,11 +94,13 @@ public class OrderService {
 		bookService.updateBook(book);
 		this.updateOrder(order);
 	}
-	
+
+	@Transactional
 	public Order getOrderByBookId(long bookId){
 		return orderRepository.getOrderByBookId(bookId);
 	}
-	
+
+	@Transactional
 	public Collection<Order> getAllOrdersByUserId(long userId){
 		return orderRepository.getOrdersByUserId(userId);
 	}
