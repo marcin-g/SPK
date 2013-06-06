@@ -1,7 +1,5 @@
 package pl.miasi2013.spring.lab2.controller;
 
-import java.rmi.server.UID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.service.BookService;
-import pl.miasi2013.spring.lab2.service.SimpleMailService;
 
 @Controller
 @RequestMapping("/books")

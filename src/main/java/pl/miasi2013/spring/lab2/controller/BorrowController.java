@@ -20,7 +20,7 @@ public class BorrowController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllBorrows(Model model) {
-		model.addAttribute("borrows", borrowService.getAllBorrows());
+		model.addAttribute("borrows", borrowService.getBorrowsWithBooks(borrowService.getUserBorrows()));
 		return "borrowsList";
 	}
 	
