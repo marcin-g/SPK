@@ -96,6 +96,10 @@ public class OrderService {
 		return orderRepository.getOrderByBookId(bookId);
 	}
 	
+	public Collection<Order> getAllOrdersByUserId(long userId){
+		return orderRepository.getOrdersByUserId(userId);
+	}
+	
 	public static  boolean isOrderValid(Order order, BindingResult result) {
 		boolean valid = true;
 		return valid;
