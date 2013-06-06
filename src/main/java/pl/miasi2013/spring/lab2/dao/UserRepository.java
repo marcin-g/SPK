@@ -45,7 +45,7 @@ public class UserRepository implements UserRepositoryInterface {
 		    new PreparedStatementCreator() {
 		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 		            PreparedStatement ps =
-		                connection.prepareStatement("insert into UserU (usename, firstname, lastname, email, roles, password) values (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		                connection.prepareStatement("insert into UserU (username, firstname, lastname, email, roles, password) values (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 		            ps.setString(1, user.getUsername());
 		            ps.setString(2, user.getFirstname());
 		            ps.setString(3, user.getLastname());
