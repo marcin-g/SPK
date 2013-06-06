@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page contentType="text/html;charset=utf-8" %>
+<%@ page contentType="text/html;charset=utf-8"%>
 
 
 <html lang="pl">
@@ -24,7 +24,8 @@
 			</spring:url>
 			<form:form method="post" action="${orderURL}">
 			Zamówienie nr <c:out value="${order.key.id}" />.<br />
-			<b><c:out value="${order.value.title}" /></b> - <c:out value="${order.value.author}" /><br />
+				<b><c:out value="${order.value.title}" /></b> - <c:out value="${order.value.author}" />
+				<br />
 				<button type="submit">Zatwierdź</button>
 			</form:form>
 

@@ -24,38 +24,43 @@
 
 		<form:form modelAttribute="book" method="${method}"
 			class="form-horizontal">
-				<div class="${cssGroup}">
-					<label class="control-label">Tytuł</label>
-					<div class="controls">
-						<form:hidden path="id"/>
-						<form:hidden path="state"/>
-						<form:input path="title" />
-						<span class="help-inline"><form:errors path="title" cssClass="control-group error"/></span>
-					</div>
-					<label class="control-label">Autor</label>
-					<div class="controls">
-						<form:input path="author" />
-						<span class="help-inline"><form:errors path="author" cssClass="control-group error"/></span>
-					</div>					
-					<label class="control-label">ISBN</label>
-					<div class="controls">
-						<form:input path="ISBN" />
-						<span class="help-inline"><form:errors path="ISBN" cssClass="control-group error"/></span>
-					</div>
-					<label class="control-label">Wydawnictwo</label>
-					<div class="controls">
-						<form:input path="publisher" />
-						<span class="help-inline"><form:errors path="ISBN" cssClass="control-group error"/></span>
-					</div>
-					<label class="control-label">Rok wydania</label>
-					<div class="controls">
-						<form:input path="year" />
-						<span class="help-inline"><form:errors path="year" cssClass="control-group error"/></span>
-					</div>
+			<div class="${cssGroup}">
+				<label class="control-label">Tytuł</label>
+				<div class="controls">
+					<form:hidden path="id" />
+					<form:hidden path="state" />
+					<form:input path="title" />
+					<span class="help-inline"><form:errors path="title"
+							cssClass="control-group error" /></span>
 				</div>
-				<div class="form-actions">
-					<button type="submit">Edytuj książkę	</button>
+				<label class="control-label">Autor</label>
+				<div class="controls">
+					<form:input path="author" />
+					<span class="help-inline"><form:errors path="author"
+							cssClass="control-group error" /></span>
 				</div>
+				<label class="control-label">ISBN</label>
+				<div class="controls">
+					<form:input path="ISBN" />
+					<span class="help-inline"><form:errors path="ISBN"
+							cssClass="control-group error" /></span>
+				</div>
+				<label class="control-label">Wydawnictwo</label>
+				<div class="controls">
+					<form:input path="publisher" />
+					<span class="help-inline"><form:errors path="ISBN"
+							cssClass="control-group error" /></span>
+				</div>
+				<label class="control-label">Rok wydania</label>
+				<div class="controls">
+					<form:input path="year" />
+					<span class="help-inline"><form:errors path="year"
+							cssClass="control-group error" /></span>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit">Edytuj książkę</button>
+			</div>
 		</form:form>
 		<jsp:include page="fragments/footer.jsp" />
 	</div>

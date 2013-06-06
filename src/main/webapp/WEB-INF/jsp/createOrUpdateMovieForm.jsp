@@ -23,17 +23,18 @@
 
 		<form:form modelAttribute="movie" method="${method}"
 			class="form-horizontal">
-				<div class="${cssGroup}">
-					<label class="control-label">Title</label>
-					<div class="controls">
-						<form:hidden path="id"/>
-						<form:input path="title" />
-						<span class="help-inline"><form:errors path="title" cssClass="control-group error"/></span>
-					</div>
+			<div class="${cssGroup}">
+				<label class="control-label">Title</label>
+				<div class="controls">
+					<form:hidden path="id" />
+					<form:input path="title" />
+					<span class="help-inline"><form:errors path="title"
+							cssClass="control-group error" /></span>
 				</div>
-				<div class="form-actions">
-					<button type="submit">Add/Update</button>
-				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit">Add/Update</button>
+			</div>
 		</form:form>
 		<jsp:include page="fragments/footer.jsp" />
 	</div>
