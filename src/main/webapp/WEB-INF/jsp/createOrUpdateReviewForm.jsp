@@ -18,6 +18,7 @@
 			<div class="${cssGroup}">
 				<label class="control-label">Recenzja</label>
 				<div class="controls">
+					<form:hidden path="id" />
 					<form:input path="reviewURL" />
 					<span class="help-inline"><form:errors path="reviewURL" cssClass="control-group error" /></span>
 				</div>
