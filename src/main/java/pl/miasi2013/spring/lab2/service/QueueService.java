@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import pl.miasi2013.spring.lab2.dao.QueueRepositoryInterface;
+import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Queue;
 import pl.miasi2013.spring.lab2.service.exceptions.QueueNotFoundException;
 
@@ -71,5 +72,10 @@ public class QueueService {
 	@Transactional
 	public Queue getQueueByUserIdAndBookId(long userId,long bookId){
 		return queueRepository.getQueueByUserIdAndBookId(userId, bookId);
+	}
+
+	@Transactional
+	public Collection<User> getUsersFromQueueByBookId(long bookId) {
+		return queueRepository.getUsersFromQueueByBookId(bookId);
 	}
 }
