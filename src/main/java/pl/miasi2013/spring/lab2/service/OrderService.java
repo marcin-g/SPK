@@ -23,10 +23,14 @@ public class OrderService {
 	@Autowired
 	private BookService bookService;
 	@Autowired
+	private UserService userService;
+	@Autowired
 	private SimpleMailService simpleMailService;
 
 	@Transactional
 	public void insertOrder(Order order) {
+		simpleMailService.sendBookOrdered(bookService.getBookById(order.getBookId())
+				, userService.getLoggedUser());
 		orderRepository.insertOrder(order);
 	}
 
