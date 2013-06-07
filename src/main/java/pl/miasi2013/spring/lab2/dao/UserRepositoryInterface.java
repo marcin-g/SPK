@@ -8,6 +8,7 @@ public interface UserRepositoryInterface {
 	public int insertUser(User user);
 	public User getUserByUsername(String username);
 	public void updateUser(User user);
+	public void updateUserPassword(long userId, String password);
 	public Collection<User> getAdmins();
 	public User getUserById(long userId);
 	public Collection<User> getAllUsers();

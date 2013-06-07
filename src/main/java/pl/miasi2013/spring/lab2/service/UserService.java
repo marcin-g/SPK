@@ -75,7 +75,10 @@ public class UserService {
 	public void updateUser(User user) {
 		user.setPassword(passwordEncoder.encodePassword(user.getPassword(), ""));
 		userRepository.updateUser(user);
-		
+	}
+	
+	public void updateUserPassword(long userId, String password){
+		userRepository.updateUserPassword(userId, passwordEncoder.encodePassword(password, ""));
 	}
 
 }
