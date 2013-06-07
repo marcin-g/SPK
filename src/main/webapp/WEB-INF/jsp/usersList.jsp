@@ -29,6 +29,9 @@
 			<spring:url value="/borrow/user/{userId}" var="userHistoryURL">
 				<spring:param name="userId" value="${user.id}" />
 			</spring:url>
+			<spring:url value="/user/pass/{userId}" var="userPassURL">
+				<spring:param name="userId" value="${user.id}" />
+			</spring:url>
 
 			<c:out value="${user.id}" />. <b><c:out value="${user.username}" /> (<c:out
 					value="${user.firstname}" /> <c:out value="${user.lastname}" />)</b>
@@ -40,6 +43,9 @@
 			</form:form>
 			<form:form style="display:inline;" method="get" action="${userHistoryURL}">
 				<button type="submit">Historia</button>
+			</form:form>
+			<form:form style="display:inline;" method="get" action="${userPassURL}">
+				<button type="submit">Hasło</button>
 			</form:form>
 			<br />
 		</c:forEach>

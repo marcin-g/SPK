@@ -45,11 +45,6 @@
 					<form:input path="email" />
 					<span class="help-inline"><form:errors path="email" cssClass="control-group error" /></span>
 				</div>
-				<label class="control-label">Hasło</label>
-				<div class="controls">
-					<form:input type="password" path="password" />
-					<span class="help-inline"><form:errors path="password" cssClass="control-group error" /></span>
-				</div>
 
 				<label class="control-label">Typ użytkownika</label>
 				<div class="controls">
