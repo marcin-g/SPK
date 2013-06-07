@@ -92,7 +92,7 @@ public class BorrowRepository implements BorrowRepositoryInterface {
 	public Borrow getActualBorrowByBook(long bookId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] parameters = {bookId};
-		List<Borrow> borrows = jdbcTemplate.query("select * from Borrow where end is null and book_id = (?)", parameters, new BorrowMapper());
+		List<Borrow> borrows = jdbcTemplate.query("select * from Borrow where end = 0 and book_id = (?)", parameters, new BorrowMapper());
 		if (borrows.isEmpty()) {
 			return null;
 		}
