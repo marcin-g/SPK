@@ -27,7 +27,6 @@
 				<label class="control-label">Tytuł</label>
 				<div class="controls">
 					<form:hidden path="id" />
-					<form:hidden path="state" />
 					<form:input path="title" />
 					<span class="help-inline"><form:errors path="title" cssClass="control-group error" /></span>
 				</div>
@@ -59,6 +58,11 @@
 						<option value="AVAILABLE">dostępna</option>
 						<option value="REPORTED">realizacja zamówienia</option>
 						<option value="REVIEWED">u recenzenta</option>
+						<option value="AWAITING_RECEPTION">oczekiwanie na odbiór</option>
+						<option value="AWAITING_RETURN">oczekiwanie na zwrot</option>
+						<option value="BORROWED">wypożyczona</option>
+						<option value="UNAVAILABLE">niedostępna</option>
+
 					</form:select>
 					<span class="help-inline"><form:errors path="state" cssClass="control-group error" /></span>
 				</div>
