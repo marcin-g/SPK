@@ -69,7 +69,7 @@ public class BookController {
 		return "createOrUpdateBookForm";
 	}
 
-	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/edit/{bookId}", method = RequestMethod.POST)
 	public String updateBook(@ModelAttribute("book") Book book,BindingResult result) {
 		if (!BookService.isBookValid(book,result)) {
 			return "createOrUpdateBookForm";

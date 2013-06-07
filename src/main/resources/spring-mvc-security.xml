@@ -16,8 +16,9 @@
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/books" access="permitAll" />
 		<security:intercept-url pattern="/books/**" access="isAuthenticated()" />
-		<security:intercept-url pattern="/order" access="hasRole('ROLE_SUPERUSER')" />
-		<security:intercept-url pattern="/order/**" access="hasRole('ROLE_SUPERUSER')" />
+		<security:intercept-url pattern="/order" access="hasRole('ROLE_SUPERUSER') || hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/order/confirm/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/order/**" access="hasRole('ROLE_SUPERUSER') || hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/users" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/**" access="isAuthenticated()" />
