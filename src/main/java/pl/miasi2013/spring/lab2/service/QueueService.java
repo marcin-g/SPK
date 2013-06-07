@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
-
 import pl.miasi2013.spring.lab2.dao.QueueRepositoryInterface;
 import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Queue;
@@ -77,5 +75,11 @@ public class QueueService {
 	@Transactional
 	public Collection<User> getUsersFromQueueByBookId(long bookId) {
 		return queueRepository.getUsersFromQueueByBookId(bookId);
+	}
+
+	@Transactional
+	public void deleteQueue(long bookId, long userId) {
+		Queue queue=getQueueByUserIdAndBookId(userId, bookId);
+		deleteQueueById(queue.getId());
 	}
 }

@@ -64,11 +64,17 @@ public class QueueController {
 		return "redirect:/queues";		
 	}
 
-
+	
 	@RequestMapping(value = "show/{bookId}", method = RequestMethod.GET)
 	public String showQueue(@PathVariable("bookId") long bookId, Model model) {
 		model.addAttribute("users", queueService.getUsersFromQueueByBookId(bookId));		
 		model.addAttribute("book",bookService.getBookById(bookId));
 		return "queue";
+	}
+	
+	@RequestMapping(value = "/rm/{bookId}/{userId}", method = RequestMethod.DELETE)
+	public String deleteQueue(@PathVariable("bookId") long bookId,@PathVariable("userId") long userId) {
+		queueService.deleteQueue(bookId,userId);
+		return "redirect:/queues";
 	}
 }
