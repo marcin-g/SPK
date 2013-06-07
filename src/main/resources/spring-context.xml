@@ -50,9 +50,9 @@
 		<property name="templateMessage" ref="templateMessage" />
 	</bean>
 
-	<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
-		<jdbc:script location="classpath:DDL.sql" />
-		<jdbc:script location="classpath:DML.sql" />
-	</jdbc:initialize-database>
+<!--	<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+ 		<jdbc:script location="classpath:DDL.sql" />
+		<jdbc:script location="classpath:DML.sql" />  
+	</jdbc:initialize-database> -->
 
 </beans>
