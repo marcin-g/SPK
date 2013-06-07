@@ -96,6 +96,7 @@ public class BookService {
 	public void updateBookReview(Book book) {
 		Book original=getBookById(book.getId());
 		original.setReviewURL(book.getReviewURL());
+		original.setState(BookState.AVAILABLE);
 		updateBook(original);
 	}
 	public static boolean isBookValid(Book book, BindingResult result) {
