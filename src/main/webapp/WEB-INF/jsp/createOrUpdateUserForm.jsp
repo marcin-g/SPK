@@ -55,6 +55,14 @@
 					<span class="help-inline"><form:errors path="roles" cssClass="control-group error" /></span>
 				</div>
 
+				<c:if test="${empty user.username}">
+					<label class="control-label">Hasło</label>
+					<div class="controls">
+						<form:input type="password" path="password" />
+						<span class="help-inline"><form:errors path="password" cssClass="control-group error" /></span>
+					</div>
+				</c:if>
+
 			</div>
 			<div class="form-actions">
 				<button type="submit">Edytuj użytkownika</button>
