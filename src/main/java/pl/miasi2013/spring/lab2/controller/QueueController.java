@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.miasi2013.spring.lab2.model.relations.Queue;
+import pl.miasi2013.spring.lab2.service.BookService;
 import pl.miasi2013.spring.lab2.service.QueueService;
 
 @Controller
@@ -17,6 +18,8 @@ import pl.miasi2013.spring.lab2.service.QueueService;
 public class QueueController {
 	@Autowired
 	private QueueService queueService;
+	@Autowired
+	private BookService bookService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getAllQueues(Model model) {
@@ -39,7 +42,7 @@ public class QueueController {
 		queueService.insertQueue(queue);
 		return "redirect:/queues";
 	}
-	
+
 	@RequestMapping(value = "/{queueId}", method = RequestMethod.GET)
 	public String initEditQueue(@PathVariable("queueId") long queueId, Model model) {
 		model.addAttribute("queue", queueService.getQueueById(queueId));		
@@ -61,5 +64,11 @@ public class QueueController {
 		return "redirect:/queues";		
 	}
 
-	
+
+	@RequestMapping(value = "show/{bookId}", method = RequestMethod.GET)
+	public String showQueue(@PathVariable("bookId") long bookId, Model model) {
+		model.addAttribute("users", queueService.getUsersFromQueueByBookId(bookId));		
+		model.addAttribute("book",bookService.getBookById(bookId));
+		return "queue";
+	}
 }
