@@ -15,7 +15,7 @@
 		<jsp:include page="fragments/bodyHeader.jsp" />
 		<c:choose>
 			<c:when test="${empty book.id}">
-				<c:set var="method" value="put" />
+				<c:set var="method" value="post" />
 			</c:when>
 			<c:otherwise>
 				<c:set var="method" value="post" />
@@ -52,13 +52,6 @@
 					<span class="help-inline"><form:errors path="year" cssClass="control-group error" /></span>
 				</div>
 
-				<c:if test="${empty user.id }">
-					<label class="control-label">Hasło</label>
-					<div class="controls">
-						<form:input type="password" path="password" />
-						<span class="help-inline"><form:errors path="password" cssClass="control-group error" /></span>
-					</div>
-				</c:if>
 
 				<label class="control-label">Status</label>
 				<div class="controls">

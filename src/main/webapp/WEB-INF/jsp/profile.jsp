@@ -18,6 +18,7 @@
 				<label class="control-label">Imię</label>
 				<div class="controls">
 					<form:hidden path="id" />
+					<form:hidden path="roles" />
 					<form:input path="firstname" />
 					<span class="help-inline"><form:errors path="firstname" cssClass="control-group error" /></span>
 				</div>
