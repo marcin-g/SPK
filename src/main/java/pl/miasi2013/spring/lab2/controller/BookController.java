@@ -51,7 +51,6 @@ public class BookController {
 		if (!BookService.isBookValid(book,result)) {
 			return "createOrUpdateBookForm";
 		}
-		book.setState(BookState.AVAILABLE);
 		bookService.insertBook(book);
 		return "redirect:/books";
 	}
