@@ -55,9 +55,9 @@
 				<label class="control-label">Status</label>
 				<div class="controls">
 					<form:select path="state">
-					<option value="AVAILABLE">dostępna</option>
-					<option value="REPORTED">adostępnasfsaa</option>
-					<option value="REVIEWED">dfasfasostępna</option>
+						<option value="AVAILABLE">dostępna</option>
+						<option value="REPORTED">realizacja zamówienia</option>
+						<option value="REVIEWED">u recenzenta</option>
 					</form:select>
 					<span class="help-inline"><form:errors path="state" cssClass="control-group error" /></span>
 				</div>
