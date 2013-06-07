@@ -10,7 +10,7 @@ insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Nawrót 
 insert into Book(title, isbn, year, author, state) values('Pan Tadeusz: Kołowrót Gerwazego', '12345', '1900', 'Adam Mickiewicz', 'AVAILABLE');
 
 insert into Borrow(book_id, user_id, begin, end) values(1, 1, 1370558512, 1370558522);
-insert into Borrow(book_id, user_id, begin) values(2, 1, 1370558512);
+insert into Borrow(book_id, user_id, begin, end) values(2, 1, 1370558512, 0);
 insert into Borrow(book_id, user_id, begin, end) values(5, 1, 1370558512, 1370558532);
-insert into Borrow(book_id, user_id, begin) values(4, 2, 1370558512);
+insert into Borrow(book_id, user_id, begin, end) values(4, 2, 1370558512, 0);
 insert into Borrow(book_id, user_id, begin, end) values(5, 2, 1370558533, 1370558534);
