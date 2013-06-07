@@ -9,6 +9,7 @@
 
 <html lang="pl">
 
+<jsp:useBean id="dateValue" class="java.util.Date" />
 
 <jsp:include page="fragments/headTag.jsp" />
 
@@ -17,11 +18,28 @@
 		<jsp:include page="fragments/bodyHeader.jsp" />
 
 		<h2>Historia wypożyczeń</h2>
-		<spring:url value="/books/{bookId}" var="bookURL">
-			<spring:param name="bookId" value="${borrow.key.bookId}" />
-		</spring:url>
+
 		<c:forEach var="borrow" items="${borrows}">
-			<c:out value="${borrow.key.id}" />. <a href="${bookURL}"> <c:out value="${borrow.value.title}" /> </a>
+			<spring:url value="/books/{bookId}" var="bookURL">
+				<spring:param name="bookId" value="${borrow.key.bookId}" />
+			</spring:url>	
+					[<jsp:setProperty name="dateValue" property="time" value="${borrow.key.begin*1000}" />
+			<fmt:formatDate value="${dateValue}" pattern="MM/dd/yyyy" /> -
+			
+			<c:choose>
+				<c:when test="${borrow.key.end==0}">
+					<c:out value="--/--/----" />
+				</c:when>
+				<c:otherwise>
+					<jsp:setProperty name="dateValue" property="time" value="${borrow.key.end*1000}" />
+					<fmt:formatDate value="${dateValue}" pattern="MM/dd/yyyy" />
+				</c:otherwise>
+			</c:choose>
+			]
+			
+			<a href="${bookURL}"> <c:out value="${borrow.value.title}" /> - <c:out
+					value="${borrow.value.author}" />
+			</a>
 			<br />
 		</c:forEach>
 		<jsp:include page="fragments/footer.jsp" />
