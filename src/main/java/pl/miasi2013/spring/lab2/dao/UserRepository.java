@@ -32,9 +32,9 @@ public class UserRepository implements UserRepositoryInterface {
 	@Override
 	public void updateUser(User user) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update("update UserU set firstname = ?, lastname = ?, email = ?, roles = ?, password = ? where id = ?",
-				user.getFirstname(), user.getLastname(), user.getEmail(), StringUtils.join(user.getRoles(), ", "),
-				user.getPassword(), user.getId());
+		jdbcTemplate.update("update UserU set firstname = ?, lastname = ?, email = ?, roles = ? where id = ?",
+				user.getFirstname(), user.getLastname(), user.getEmail(), StringUtils.join(user.getRoles(), ","),
+				user.getId());
 	}
 
 	@Override
@@ -92,6 +92,13 @@ public class UserRepository implements UserRepositoryInterface {
 	public Collection<User> getAllUsers() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		return jdbcTemplate.query("select * from UserU", new UserMapper());
+	}
+
+	@Override
+	public void updateUserPassword(long userId, String password) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("update UserU set password = ? where id = ?",
+				password, userId);
 	}
 
 }
