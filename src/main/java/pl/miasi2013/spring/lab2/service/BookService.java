@@ -30,6 +30,8 @@ public class BookService {
 	private QueueService queueService;
 	@Autowired
 	private BorrowService borrowService;
+	@Autowired
+	private SimpleMailService simpleMailService;
 
 	public Collection<Book> getAllBooks() {
 		return bookRepository.getAllBooks();
@@ -50,6 +52,13 @@ public class BookService {
 
 	@Transactional
 	public void updateBook(Book book) {
+		if(book.getState()==BookState.AWAITING_RECEPTION){
+			if(queueService.getQueuesByBookId((int) book.getId()).size()>0){
+				Queue queue=queueService.getQueuesByBookId((int) book.getId()).iterator().next();
+				simpleMailService.sendBookReturned(book, userService.getUserById(queue.getUserId()));
+				queueService.deleteQueueById(queue.getId());
+			}
+		}
 		bookRepository.updateBook(book);
 	}
 
