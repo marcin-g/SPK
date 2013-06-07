@@ -57,6 +57,9 @@
 			<spring:url value="/borrow/book/{bookId}" var="bookHistoryURL">
 				<spring:param name="bookId" value="${book.id}" />
 			</spring:url>
+			<spring:url value="/queue/show/{bookId}" var="bookQueueURL">
+				<spring:param name="bookId" value="${book.id}" />
+			</spring:url>
 
 			<c:out value="${book.id}" />. <a href="${bookURL}"><b><c:out value="${book.title}" /></b> -
 				<c:out value="${book.author}" /></a> [<c:out value="${stat }" />]
@@ -69,6 +72,9 @@
 				</form:form>
 				<form:form style="display:inline;" method="get" action="${bookHistoryURL}">
 					<button type="submit">Historia</button>
+				</form:form>
+				<form:form style="display:inline;" method="get" action="${bookQueueURL}">
+					<button type="submit">Kolejka</button>
 				</form:form>
 			</security:authorize>
 			<br />
