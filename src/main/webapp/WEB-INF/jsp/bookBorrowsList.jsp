@@ -8,6 +8,8 @@
 <%@ page import="java.io.*,java.util.*"%>
 <%@ page import="javax.servlet.*,java.text.*"%>
 
+<jsp:useBean id="dateValue" class="java.util.Date" />
+
 
 <html lang="pl">
 
@@ -30,19 +32,25 @@
 			<spring:param name="bookId" value="${borrow.key.bookId}" />
 		</spring:url>
 
-		<%
-			//long myLong = (long)borrow.key.begin;
-			//Date date = new Date(borrow.key.begin);
-			//SimpleDateFormat ft = new SimpleDateFormat("yyyy.MM.dd");
-			//out.print("<h2 align=\"center\">" + ft.format(date) + "</h2>");
-		%>
-
 		<c:forEach var="borrow" items="${borrows}">
-			<c:out value="${borrow.key.begin}" />
 
-			<a href="${bookURL}"> <c:out value="${date}" /> (<c:out value="${borrow.value.firstname}" />
-				<c:out value="${borrow.value.lastname}" />)
-			</a>
+			[<jsp:setProperty name="dateValue" property="time" value="${borrow.key.begin*1000}" />
+			<fmt:formatDate value="${dateValue}" pattern="MM/dd/yyyy" /> -
+			
+			<c:choose>
+				<c:when test="${borrow.key.end==0}">
+					<c:out value="--/--/----" />
+				</c:when>
+				<c:otherwise>
+					<jsp:setProperty name="dateValue" property="time" value="${borrow.key.end*1000}" />
+					<fmt:formatDate value="${dateValue}" pattern="MM/dd/yyyy" />
+				</c:otherwise>
+			</c:choose>
+
+]
+
+			<c:out value="${borrow.value.username}" /> (<c:out value="${borrow.value.firstname}" />
+			<c:out value="${borrow.value.lastname}" />)
 			<br />
 		</c:forEach>
 
