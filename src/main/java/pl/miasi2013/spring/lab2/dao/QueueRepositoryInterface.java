@@ -2,6 +2,7 @@ package pl.miasi2013.spring.lab2.dao;
 
 import java.util.Collection;
 
+import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Queue;
 
 public interface QueueRepositoryInterface {
@@ -21,6 +22,8 @@ public interface QueueRepositoryInterface {
 	public boolean isBookQueuedByUser(long bookId, long userId);
 	
 	Queue getQueueByUserIdAndBookId(long userId, long bookId);
+	
+	Collection<User> getUsersFromQueueByBookId(long bookId);
 
 }
 

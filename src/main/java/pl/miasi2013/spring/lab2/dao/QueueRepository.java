@@ -14,8 +14,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import pl.miasi2013.spring.lab2.model.relations.Borrow;
-import pl.miasi2013.spring.lab2.model.relations.Order;
+import pl.miasi2013.spring.lab2.model.User;
 import pl.miasi2013.spring.lab2.model.relations.Queue;
 
 public class QueueRepository implements QueueRepositoryInterface {
@@ -98,5 +97,12 @@ public class QueueRepository implements QueueRepositoryInterface {
 			return null;
 		}
 		return queues.get(0);
+	}
+
+	@Override
+	public Collection<User> getUsersFromQueueByBookId(long bookId) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] parameters = {bookId};
+		return jdbcTemplate.query("select u.* from Queue q join UserU u on u.id = q.user_id where q.book_id = (?)", parameters, new UserMapper());
 	}
 }
