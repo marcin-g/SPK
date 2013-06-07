@@ -36,13 +36,14 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "users/profile", method = RequestMethod.POST)
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	public String updateQueue(@ModelAttribute("user") User user,
 			BindingResult result) {
 		/*
 		 * if (!UserService.isQueueValid(queue,result)) { return "profile"; }
 		 */
 		// userService.updateQueue(queue);
+		userService.updateUser(user);
 		return "redirect:/";
 	}
 
