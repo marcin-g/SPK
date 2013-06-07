@@ -77,8 +77,8 @@ public class UserService {
 		userRepository.updateUser(user);
 	}
 	
-	public void updateUserPassword(long userId, String password){
-		userRepository.updateUserPassword(userId, passwordEncoder.encodePassword(password, ""));
+	public void updateUserPassword(User user){
+		userRepository.updateUserPassword(user.getId(), passwordEncoder.encodePassword(user.getPassword(), ""));
 	}
 
 }

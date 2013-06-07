@@ -87,14 +87,15 @@ public class UserController {
 	@RequestMapping(value = "/users/pass/{userId}", method = RequestMethod.GET)
 	public String initUpdatePassword(@PathVariable("userId") long userId,
 			Model model) {
-		model.addAttribute("password", "");
+		User user=new User();
+		user.setId(userId);
+		model.addAttribute("user", user);
 		return "password";
 	}
 
 	@RequestMapping(value = "/users/pass/{userId}", method = RequestMethod.POST)
-	public String updatePassword(@ModelAttribute("userId") long userId,
-			@ModelAttribute("password") String password) {
-		userService.updateUserPassword(userId, password);
+	public String updatePassword(@ModelAttribute("user") User user) {
+		userService.updateUserPassword(user);
 		return "redirect:/users";
 	}
 }
