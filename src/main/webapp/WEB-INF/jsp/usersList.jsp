@@ -29,7 +29,7 @@
 			<spring:url value="/borrow/user/{userId}" var="userHistoryURL">
 				<spring:param name="userId" value="${user.id}" />
 			</spring:url>
-			<spring:url value="/user/pass/{userId}" var="userPassURL">
+			<spring:url value="/users/pass/{userId}" var="userPassURL">
 				<spring:param name="userId" value="${user.id}" />
 			</spring:url>
 

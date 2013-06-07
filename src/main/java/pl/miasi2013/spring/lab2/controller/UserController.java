@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.miasi2013.spring.lab2.model.Book;
 import pl.miasi2013.spring.lab2.model.User;
-import pl.miasi2013.spring.lab2.service.BookService;
 import pl.miasi2013.spring.lab2.service.UserService;
 
 @Controller
@@ -90,7 +88,7 @@ public class UserController {
 	public String initUpdatePassword(@PathVariable("userId") long userId,
 			Model model) {
 		model.addAttribute("password", "");
-		return "createOrUpdateUserForm";
+		return "password";
 	}
 
 	@RequestMapping(value = "/users/pass/{userId}", method = RequestMethod.POST)

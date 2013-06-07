@@ -14,11 +14,12 @@
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
 
-		<form:form modelAttribute="password" method="post" class="form-horizontal">
+		<form:form modelAttribute="user" method="post" class="form-horizontal">
 			<div class="${cssGroup}">
 
 				<label class="control-label">Hasło</label>
 				<div class="controls">
+					<form:hidden path="id" />
 					<form:input type="password" path="password" />
 					<span class="help-inline"><form:errors path="password" cssClass="control-group error" /></span>
 				</div>
