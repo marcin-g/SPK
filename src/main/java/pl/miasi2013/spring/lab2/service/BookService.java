@@ -148,8 +148,11 @@ public class BookService {
 		}
 		else{
 			book.setState(BookState.BORROWED);
-			Borrow borrow=new Borrow(0, bookId, userService.getLoggedUser().getId(),
-					(new java.util.Date()).getTime()/1000, (Long) null);
+			Borrow borrow=new Borrow();
+			borrow.setId(0);
+			borrow.setBookId(bookId);
+			borrow.setUserId(userService.getLoggedUser().getId());
+			borrow.setBegin((new java.util.Date()).getTime()/1000);
 			borrowService.insertBorrow(borrow);
 		}
 		updateBook(book);
