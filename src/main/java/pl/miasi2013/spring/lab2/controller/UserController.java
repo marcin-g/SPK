@@ -22,19 +22,18 @@ import pl.miasi2013.spring.lab2.service.UserService;
 public class UserController {
 	@Autowired
 	UserService userService;
-	
+
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String initEditProfile(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
-		String name = auth.getName(); 
-		try{
+		String name = auth.getName();
+		try {
 			User user = userService.getUserByUsername(name);
-			//user.setName(name);
+			// user.setName(name);
 			model.addAttribute("user", user);
 			return "profile";
-		}
-		catch(UsernameNotFoundException e){
+		} catch (UsernameNotFoundException e) {
 			return "redirect:/login";
 		}
 	}
@@ -54,7 +53,7 @@ public class UserController {
 		model.addAttribute("users", userService.getAllUsers());
 		return "usersList";
 	}
-	
+
 	@RequestMapping(value = "/users/new", method = RequestMethod.GET)
 	public String initCreationForm(Model model) {
 		model.addAttribute("user", new User());
@@ -64,24 +63,40 @@ public class UserController {
 	@RequestMapping(value = "/users/new", method = RequestMethod.POST)
 	public String processAddBook(@ModelAttribute("user") User user,
 			BindingResult result) {
-		if (!UserService.isUserValid(user,result)) {
+		if (!UserService.isUserValid(user, result)) {
 			return "createOrUpdateUserForm";
 		}
 		userService.insertUser(user);
 		return "redirect:/users";
 	}
+
 	@RequestMapping(value = "/users/edit/{userId}", method = RequestMethod.GET)
 	public String initEditBook(@PathVariable("userId") long userId, Model model) {
-		model.addAttribute("user", userService.getUserById(userId));		
+		model.addAttribute("user", userService.getUserById(userId));
 		return "createOrUpdateUserForm";
 	}
-	
+
 	@RequestMapping(value = "/users/edit/{userId}", method = RequestMethod.POST)
-	public String updateBook(@ModelAttribute("user") User user,BindingResult result) {
-		if (!UserService.isUserValid(user,result)) {
+	public String updateBook(@ModelAttribute("user") User user,
+			BindingResult result) {
+		if (!UserService.isUserValid(user, result)) {
 			return "createOrUpdateUserForm";
 		}
 		userService.updateUser(user);
-		return "redirect:/users";		
+		return "redirect:/users";
+	}
+
+	@RequestMapping(value = "/users/pass/{userId}", method = RequestMethod.GET)
+	public String initUpdatePassword(@PathVariable("userId") long userId,
+			Model model) {
+		model.addAttribute("password", "");
+		return "createOrUpdateUserForm";
+	}
+
+	@RequestMapping(value = "/users/pass/{userId}", method = RequestMethod.POST)
+	public String updatePassword(@ModelAttribute("userId") long userId,
+			@ModelAttribute("password") String password) {
+		userService.updateUserPassword(userId, password);
+		return "redirect:/users";
 	}
 }
