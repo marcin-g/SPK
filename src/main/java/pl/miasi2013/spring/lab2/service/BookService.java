@@ -1,5 +1,6 @@
 package pl.miasi2013.spring.lab2.service;
 
+import java.sql.Date;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,10 +142,17 @@ public class BookService {
 		Book book=getBookById(bookId);
 		if(book.getState()==BookState.BORROWED){
 			book.setState(BookState.AVAILABLE);
+			Borrow borrow=borrowService.getActualBorrowByBook(bookId);
+			borrow.setEnd((new java.util.Date()).getTime()/1000);
+			borrowService.updateBorrow(borrow);
 		}
 		else{
 			book.setState(BookState.BORROWED);
+			Borrow borrow=new Borrow(0, bookId, userService.getLoggedUser().getId(),
+					(new java.util.Date()).getTime()/1000, (Long) null);
+			borrowService.insertBorrow(borrow);
 		}
+		updateBook(book);
 	}
 
 	@Transactional
